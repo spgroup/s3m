@@ -1,0 +1,251 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Evaluating and Improving Semistructured Merge</title>
+<meta name="description" content="Page description goes here">
+
+<!-- ******************************************************************************************
+Set the type and color theme here - the Pro version contains additional themes -->
+<link href="css/hawthorne_type2_color3.css" rel="stylesheet">
+<!--  ************************************************************************************* -->
+
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<script src="js/vendor/modernizr.js"></script>
+
+</head>
+<body>
+
+<div class="top-border"></div>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 small-centered columns">
+		<header>		
+			<h1>Evaluating and Improving Semistructured Merge</h1>
+			<!--
+			<div class="logo">
+				<a href="index.html"><img src="img/logo.png" alt="Your Name Here" /></a>
+			</div>
+			-->
+		</header>
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="small-12 medium-7 large-7 columns">
+		<h2>Abstract</h2>
+		<p>
+While unstructured merge tools rely only on textual analysis to detect and resolve conflicts, semistructured merge tools go further by partially exploiting the syntactic structure and semantics of the involved artifacts. Previous studies compare these merge approaches with respect to the number of reported conflicts, showing, for most projects and merge situations, reduction in favor of semistructured merge. However, these studies do not investigate whether this reduction actually leads to integration effort reduction (productivity) without negative impact on the correctness of the merging process (quality). To analyze this, and better understand how merge tools could be improved, in this paper we reproduce more than 30,000 merges from 50 open source projects, identifying spurious conflicts reported by one approach but not by the other (false positives), and interference reported as conflict by one approach but missed by the other (false negatives). Our results and complementary analysis indicate that, in our sample, the number of false positives is significantly reduced when using semistructured merge, and we find evidence that its added false positives are easier to analyze and resolve than those reported by unstructured merge. However, our evidence shows that semistructured merge might lead to more false negatives, and we argue that they are harder to detect and resolve than unstructured merge false negatives. Driven by these findings, we propose an improved semistructured merge tool that further combines both approaches to reduce the false positives and false negatives of semistructured merge. We find evidence that the improved tool, when compared to unstructured merge, reduces the number of reported conflicts by half, has no extra false positives, has at least 8% less false negatives, and is not prohibitively slower.
+		<p>
+	</div>
+	<div class="small-12 medium-5 large-5 columns">
+		<div class="lined-list">
+			<ul>
+				<li><strong>Preprint:</strong> <a href="docs/preprint.pdf" target="_blank"> pdf <i class="fa fa-external-link"></i></a>
+				<p><span style="color:red;">Errata!</span> In page 19, paragraph 6, the correct metric is LOC, not KLOC.</p>
+				</li>
+				<li><strong>Year:</strong> 2017</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+		<hr class="project-detail-hr" />
+		<h3>False Positive and False Negative Analysis</h3>
+		<ul>
+			<li><strong>Replication package:</strong> <a href="https://github.com/delaevernu/eis" target="_blank"> https://github.com/delaevernu/eis <i class="fa fa-external-link"></i></a></li>
+			<li><strong>Sample list and characteristics</strong> <a href="docs/samplelistcharacteristics.pdf"" target="_blank"> sample <i class="fa fa-external-link"></i></a> </a></li>
+			<!--
+			<li><strong>Virtual Machine (tools, examples and evaluation):</strong> <a href="https://github.com/delaevernu/gitconflictsextractor" target="_blank"> https://github.com/delaevernu/gitconflictsextractor <i class="fa fa-external-link"></i></a></li>
+			-->
+		</ul>	
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+		<hr class="project-detail-hr" />
+		<h3>Improved Semistructured Merge Tool</h3>
+		<ul>
+			<li><strong>jFSTMerge tool:</strong> <a href="https://github.com/delaevernu/jfstmerge" target="_blank"> https://github.com/delaevernu/jfstmerge <i class="fa fa-external-link"></i></a></li>
+			<li><strong>Performance analysis replication package:</strong> <a href="https://github.com/delaevernu/jfstmerge/tree/master/evaluation" target="_blank"> https://github.com/delaevernu/jfstmerge/evaluation <i class="fa fa-external-link"></i></a></li>
+		</ul>	
+	</div>
+</div> 
+ <div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+		<hr class="project-detail-hr" />
+		<h3>Evaluation Results</h3>
+		<ul>
+			<li><strong>Detailed results:</strong> <a href="ciecusma/results/resultFPFN.html" target="_blank"> results <i class="fa fa-external-link"></i></a></li>
+		</ul>	
+	</div>
+</div> 
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+		<hr class="project-detail-hr" />
+		
+		<h3>Detailed Experiment Description for False Positives and False Negatives Analysis</h3>
+		<p>
+		To answer our research questions and compute the related metrics, we design the experiment illustrated in the figure above. In the mining step, we use tools that mine Distributed VCS repositories to collect a number of merge scenarios. Subsequently, in the execution step, we use merge tools from both approaches in order to merge the selected merge scenarios and to find false positives and false negatives candidates. Afterwards, in the analysis step, we parse and compile the files to which the false positives and false negatives candidates belong to confirm their occurrence. Finally, we use R scripts to sum up the results. In this online appendix, we explain the details about the execution and analysis steps, details about the mining step is available in the paper.
+		</p>
+		
+		<!-- Begin project image -->
+		<div class="project-img">
+			<img src="img/design.png" alt="Experiment Design" />
+			<h6>Experiment Design</h6>
+		</div>
+		<!-- End project image -->
+		
+		<h6>Execution and Analysis Steps</h6>
+		<p>
+		After collecting the sample projects and merge scenarios in the mining step, we use both unstructured and semistructured approaches to merge the selected scenarios and to find the false positives and false negatives described in the paper.
+		In the following we explain how we collect each metric.
+		</p>
+		
+		<h6>Overestimated Number of False Positives Added by Semistructured Merge &mdash; aFP(SS)</h6>
+		
+		<p>
+		The semistructured merge added false positives are due to renamings. They happen, for instance, when one of the developers edits the body of an existing method from the base revision, and the other developer modifies its signature. In the following paragraphs we explain how we identify such false positives, and why this metric is an upper bound.
+		</p>
+		
+		<p>
+		As programs elements are nodes in the generated AST of the FSTMerge tool, to identify these false positives, we first intercept conflicts detected by FSTMerge and check whether the involved triple of base, left and right elements contains a nonempty base, and an empty left or right element. Not having the left or right version, represented by the red empty string in the figure bellow, indicates that the semistructured merge algorithm could not map the element (method in this case) to its previous version, either because the element was renamed or deleted. Since we cannot precisely guarantee there was a deletion (the best option would be a similarity analysis on method bodies), we conservatively analyze all such cases. 
+		</p>
+		
+		<!-- Begin project image -->
+		<div class="project-img">
+			<img src="img/projects/fpss.png" alt="fpss" />
+			<h6>Intercepting FSTMerge tool to find false positives (aFP(SS)) renaming/deletion conflict candidates.</h6>
+		</div>
+		<!-- End project image -->
+		
+		<p>
+		To filter out obvious renaming true positives, we consider as added false positives only cases with no remaining references to the renamed or deleted element. For efficiency and simplicity, we conservatively check that by parsing the merged revision files and looking for nodes that refer to the original signature of the renamed or deleted element. More precise analyses with call graphs, and verifying that the existing references are not part of dead code, would still be incomplete and would compromise our sample size because of both performance overhead and the need for building projects. That is why we opt for computing the overestimated number of false positives added by semistructured merge.  
+		</p>
+		
+		<h6> Underestimated False Negatives Added by Unstructured Merge &mdash; aFN(UN)</h6>
+		
+		<p>
+         The main pattern of unstructured merge added false negative occurs when developers introduce duplicated declarations in different areas of the program text. To identify such situations, by intercepting FSTMerge's execution, we look for triple of matched elements in which the base version of the element is empty and the left and right are not (see the figure bellow). Such pattern indicates that there are two elements with the same name not present in the base revision of the code. Then, for each identified triple, we check if unstructured merge reports a conflict a containing the identifier of the possibly duplicated element (for example, a method signature). When we cannot find a conflict with such characteristic, unstructured merge was able to integrate the two versions of the element, or there might be a duplication. We check that by using Eclipse AST's compilation features to compile the file containing the observed duplication candidate merged by unstructured merge. Finally, we search for compilation problems corresponding to duplicated declaration error related to the observed candidate. In case of finding such compilation problem, we consider an occurrence of false negative.
+		</p>
+		
+		<p>
+		Whereas we are able to precisely compute the number of duplicated declaration errors, it would be harder to precisely compute other kinds of false negatives--- such as true renaming conflicts--- missed by unstructured merge.
+		</p>
+		
+		<!-- Begin project image -->
+		<div class="project-img">
+			<img src="img/projects/fnus.png" alt="fnus" />
+			<h6>Intercepting FSTMerge tool to find false negatives (aFN(UN)) duplicated declaration error candidates.</h6>
+		</div>
+		<!-- End project image -->
+		
+		<h6>Overestimated Number of False Negatives Added by Semistructured Merge &mdash; aFN(SS)</h6>
+		
+		<p>
+		Semistructured merge reduces some of the false negatives of unstructured merge due to the detection of duplicated declarations, but it adds some too. In particular, the false negatives added by semistructured merge are related to three major causes: reordering import statements that involve types with the same identifier, not matching initialization blocks, and unstructured merge accidental conflict detection.
+		</p>
+		
+		<p>
+		Beginning with the false negatives related to the import statements, they can occur in three situations, which we describe bellow, explaining together how we identify them. As illustrated in the figure bellow, by intercepting FSTMerge execution, we identify pairs of nodes representing import statements introduced by different developers in the files being merged by semistructured merge. Afterwards, we check if the identified pairs are (1) involving members with the same name, as in import java.util.List and import java.awt.List. We also look if the identified pairs are (2) pairs of import statements of entire packages as in import java.util.* and import java.awt.* (as long as the packages have a member in common). Finally, whereas these previous cases lead to build problems, (3) we compute a case that can lead to behavioral errors instead (which is even worse). Such cases happen when one of the developers imports all members from a package, and the other developer imports a member with the same name of an existing member in the package imported by the first developer. For instance, one writes import java.awt.* and the other writes import java.util.List, where the package java.awt.* also has a member named List. These pairs of import statements can only be a false negative added by semistructured merge if they are added in the same area of the text, otherwise it would be a false negative of the two approaches. This way, we check in the corresponding file merged by unstructured merge if there is a conflict involving the pair of imports statements.
+		</p>
+		
+		<!-- Begin project image -->
+		<div class="project-img">
+			<img src="img/projects/fnss.png" alt="fnss" />
+			<h6>Intercepting FSTMerge tool to find false negatives (aFN(SS)) type ambiguity error candidates.</h6>
+		</div>
+		<!-- End project image -->
+		
+		<p>
+		The first and second cases described in the previous paragraph only lead to type ambiguity errors when, in the presence of those pairs, the rest of the code refers to the imported elements using its abbreviated name as in List list = new List(). We check that by using Eclipse AST's compilation features. We compile the files merged by semistructured merge and that have the a pair of import statements as just described, and we search and account the compilation problems corresponding to type ambiguity error. Regarding the third case, we approximate the verification by checking if the changes introduced by the developer who imported all members from the package contain the name of the member imported by the second developer.
+		</p>
+		
+		<p>
+		To identify the second kind of false negative, we select all nodes representing initialization blocks in the three versions of the trees representing the files being merged. Using textual similarity, based on the Levenshtein distance algorithm with 80% of degree of similarity, we group triples of similar initialization nodes in the different tree versions. Lastly, we merge these triples with unstructured merge. If they conflict with unstructured merge, we conservatively classify the conflict as a semistructured merge added false negative. 
+		</p>
+		
+		<!--<p>
+		The two kinds of false negative added by semistructured merge described above are related to programs' semantic, and we do not verify semantics, either because this is, in general, not computable, or because its approximations, such as tests, might also be imprecise and could reduce the analysed sample. Thus, we are actually computing an upper bound of the false negatives added by semistructured merge metric. Besides, in both the new element referencing edited one false negative, and the third case of the import statements issue, we search for the identifier of the elements of interest  textually, using the identifier of the elements as keyword. The problem is that the identifier might be ambiguous, that is, another element with the same identifier might exist, for instance. This way, we overestimate even more the occurrence of these false negatives. 
+		</p>-->
+		
+		<p>
+		All other cases of conflicts detected by unstructured merge but not by semistructured merge are conservatively classified as added false negatives except in the following two cases when the unstructured merge conflict can be parsed. First, when the conflict contains only field declarations that do not reference each other. Second, when the conflict resolution keeps all changes from both left and right revisions, and adds no new code; we check that by parsing and inspecting the original merge commit in the project repository. We assume that the developer correctly analyzed the conflict and decided there was no interference; so that would be a unstructured false positive, not a semistructured false negative.
+		</p>
+	
+		<h6>Underestimated Number of False Positives Added by Unstructured Merge &mdash; aFP(UN)</h6>
+
+		<p>
+		The false positives added by unstructured merge in comparison to semistructured merge are due to changes in the order of commutative and associative declarations --- the ordering conflicts. We explain bellow how we compute such false positives, and why this metric is a lower bound. In particular, there are no specific patterns of ordering conflicts that would allow us to identify them systematically. Thus, we compute this metric in function of the other ones. 
+		</p>
+
+		<p>
+		In the diagram of the figure bellow, we illustrate the set of conflicts emerging from development tasks reported by unstructured and semistructured merge. Observe that each merge approach has its own set of reported conflicts. For instance, unstructured merge's set includes its own false positives (aFP(UN)), and false negatives added by the semistructured approach that unstructured merge is able to detect (aFN(SS)). The sets also includes true positives and false positives common to both approaches (TP(UN|SS) and FP(UN|SS)). Looking at these sets, we can infer how to calculate the false positives added by unstructured merge. In particular, from the diagram, note that: 
+		</p>
+		
+		<!-- Begin project image -->
+		<div class="project-img">
+			<img src="img/projects/drawing.png" alt="venn" />
+			<h6>Set of conflicts reported by unstructured and semistructured merge</h6>
+		</div>
+		<!-- End project image -->
+		
+		<ul><li> P(UN) = FP(UN|SS) + TP(UN|SS) + aFP(UN) + aFN(SS) </li></ul>
+
+		<p>
+		From which follows that, 
+		</p>
+
+		<ul><li> aFP(UN) = P(UN) - (FP(UN|SS) + TP(UN|SS)) - aFN(SS) </li></ul>
+
+		<p>
+		In order to aFP(UN) be a lower bound, we need an upper bound of (FP(UN|SS) + TP(UN|SS)) because it is a subtractive factor. If we look at how P(SS)} is composed, we see that:
+		</p>
+
+		<ul><li> P(SS) = FP(UN|SS) + TP(UN|SS) + aFP(SS) + aFN(UN) </li></ul> 
+
+		<p>
+		Therefore,
+		</p>
+
+		<ul><li> FP(UN|SS) + TP(UN|SS) = P(SS) - aFP(SS) - aFN(UN) </li></ul>
+
+		<p>
+		Note that,
+		</p>
+
+		<ul><li> FP(UN|SS) + TP(UN|SS) + aFP(SS) = P(SS) - aFN(UN) </li></ul> 
+
+		<p>
+		Thus, an upper bound of (FP(UN|SS) + TP(UN|SS)) happens if aFP(SS) is at its minimum possible value (zero). Therefore, the upper bound of (FP(UN|SS) + TP(UN|SS)))) is given by:
+		</p>
+
+		<ul><li> FP(UN|SS) + TP(UN|SS) &le; P(SS) - aFN(UN) </li></ul> 
+
+		<p>
+		Finally, replacing (FP(UN|SS) + TP(UN|SS)) in the formula of aFP(UN) given above, the minimum number of false positives added by unstructured merge becomes:
+		</p>
+
+		<ul><li> aFP(UN) &ge; P(UN) - P(SS) + aFN(UN) - aFN(SS) </ul></li>
+		
+	</div>
+</div>
+<div class="row">
+	<div class="small-12 medium-12 large-12 columns">
+		<p class="back-to-top-holder"><a class="back-to-top"><i class="fa fa-chevron-circle-up fa-3x"></i></a></p>
+	</div>
+</div> 
+
+
+
+<script src="js/vendor/jquery.min.js"></script>
+<script src="js/foundation.min.js"></script>
+<script src="js/hawthorne.js"></script>
+
+</body>
+</html>
