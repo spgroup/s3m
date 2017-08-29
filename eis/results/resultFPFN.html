@@ -37,14 +37,29 @@ font-weight: bold;
 <fieldset>
 <div>
 <h2>Summary</h2>
-<table class="tableizer-table">
-<caption align=bottom class=captiondataframe> Arrows indicate whether the number is underestimated (&uarr;, meaning the numbers should be bigger in practice) or overestimated (&darr;).</caption>
-<thead><tr class="tableizer-firstrow"><th></th><th>Unstructured tool</th><th>Semistructured tool</th><th>Improved tool</th></tr></thead><tbody>
- <tr><td>Reported Conflicts</td><td>19,238 (206%)</td><td>14,544 (156%)</td><td>9,343 (100%)</td></tr>
- <tr><td>Merge Scenarios with Conflicts</td><td>2,995 (8.8% / 155%)</td><td>2,420 (7.1% / 125%)</td><td>1,935 (5.7% / 100%)</td></tr>
- <tr><td>Added False Positives</td><td>7,958 &uarr;</td><td>5,201 &darr;</td><td>-</td></tr>
- <tr><td>Added False Negatives</td><td>2,714 &uarr;</td><td>3,260 &darr;</td><td>2,489 &darr;</td></tr>
-</tbody></table>
+	<div>
+	<table class="tableizer-table">
+	<thead><tr class="tableizer-firstrow"><th></th><th>Unstructured tool</th><th>Semistructured tool</th><th>Improved tool</th></tr></thead><tbody>
+	 <tr><td>Reported Conflicts</td><td>19,238 (206%)</td><td>14,544 (156%)</td><td>9,343 (100%)</td></tr>
+	 <tr><td>Merge Scenarios with Conflicts</td><td>2,995 (8.8% / 155%)</td><td>2,420 (7.1% / 125%)</td><td>1,935 (5.7% / 100%)</td></tr>
+	</tbody>
+	</table>
+	</div>
+		<div>
+	<table class="tableizer-table">
+	<caption align=bottom class=captiondataframe> Arrows indicate whether the number is underestimated (&uarr;, meaning the numbers should be bigger in practice) or overestimated (&darr;).</caption>
+	<thead><tr class="tableizer-firstrow"><th></th><th>Unstructured tool</th><th>Improved tool</th></tr></thead><tbody>
+	 <tr><td>Added False Positives</td><td>7,423 &uarr;</td><td>0 &darr;</td></tr>
+	 <tr><td>Added False Negatives</td><td>2,714 &uarr;</td><td>2,489 &darr;</td></tr>
+	</tbody></table>
+	</div>
+	<div>
+	<table class="tableizer-table">
+	<thead><tr class="tableizer-firstrow"><th></th><th>Unstructured tool</th><th>Semistructured tool</th></tr></thead><tbody>
+	 <tr><td>Added False Positives</td><td>7,958 &uarr;</td><td>5,201 &darr;</td></tr>
+	 <tr><td>Added False Negatives</td><td>2,714 &uarr;</td><td>3,260 &darr;</td></tr>
+	</tbody></table>
+	</div>
 </div>
 </fieldset>
 <fieldset>
