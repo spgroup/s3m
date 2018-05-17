@@ -1,7 +1,8 @@
 A miner for comparing git merges between traditional textual merge tools and semistructured merge.
 
-- If you want to mine a local repository, follow [local](https://github.com/groovy/groovy-eclipse/wiki).
-- If you want to mine a web repository, follow [web](https://github.com/groovy/groovy-eclipse/wiki).
+- If you want to mine a local repository, follow [local](https://github.com/spgroup/s3m/tree/master/miner/local).
+- If you want to mine a web repository, follow [web](https://github.com/spgroup/s3m/tree/master/miner/web).
+
 (further instructions on each folder)
 
 During execution, the $HOME/.jfstmerge folder will be generated, having the following files:
@@ -11,4 +12,5 @@ During execution, the $HOME/.jfstmerge folder will be generated, having the foll
 - jfstmerge.summary: a summary of the collected statistics
 - jfstmerge.statistics: statistics collected by merged file
 - jfstmerge.statistics.scenario: statistics collected by merge scenario
+
 (open with any text editor)
