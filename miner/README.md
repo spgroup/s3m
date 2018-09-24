@@ -6,8 +6,8 @@ A miner for comparing git merges between traditional textual merge tools and sem
 (further instructions on each folder)
 
 During execution, the $HOME/.jfstmerge folder will be generated, having the following files:
-- conflicts.unstructured: conflicts only reported by textual merge
-- conflicts.semistructured: conflicts only reported by semistructured merge
+- conflicts.unstructured: conflicts only reported by textual merge (these represent potential unstructured merge false positives and semistructured merge false negatives)
+- conflicts.semistructured: conflicts only reported by semistructured merge (these represent potential semistructured merge false positives and unstructured merge false negatives)
 - conflicts.equal: similar conflicts between the two tools
 - jfstmerge.summary: a summary of the collected statistics
 - jfstmerge.statistics: statistics collected by merged file
