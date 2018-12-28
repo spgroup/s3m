@@ -60,7 +60,7 @@ Set the type and color theme here - the Pro version contains additional themes -
 				<div class="thumbnail">
 					<div class="thumbnail-img">
 						<div class="thumbnail-hover"><a href="svj.html"></a></div>
-						<a href="eis.html"><img src="img/about-photo.png" alt="Evaluating and Improving Semistructured Merge" /></a>
+						<a href="eis.html"><img src="img/projects/eis.png" alt="Evaluating and Improving Semistructured Merge" /></a>
 					</div>
 					<div class="thumbnail-caption"><a class="caption-link" href="eis.html">Semistructured VS. Structured Merge</a></div> 
 				</div>
