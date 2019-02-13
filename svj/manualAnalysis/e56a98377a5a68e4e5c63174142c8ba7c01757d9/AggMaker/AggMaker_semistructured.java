@@ -106,12 +106,12 @@ public  class  AggMaker {
             return addFieldToAgg(field, builder);
         case "PERCENTILES":
             builder = AggregationBuilders.percentiles(field.getAlias());
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4781811695725633357.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3896468292281336630.java
             return addFieldToAgg(field, builder);
 =======
             addSpecificPercentiles((PercentilesBuilder) builder,field.getParams());
             return addFieldOrScriptToAggregation(field, builder);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5122615180539219299.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5463359578762771419.java
 		case "TOPHITS":
 			return makeTopHitsAgg(field);
         case "SCRIPTED_METRIC":

@@ -223,7 +223,7 @@ public  class  TableManager {
   }
 	
 
-  <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2134934978711402655.java
+  <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8674546056629867788.java
 =======
 public synchronized void transitionTableState(final String tableId, final TableState newState) {
     String statePath = ZooUtil.getRoot(HdfsZooInstance.getInstance()) + Constants.ZTABLES + "/" + tableId + Constants.ZTABLE_STATE;
@@ -264,7 +264,7 @@ public synchronized void transitionTableState(final String tableId, final TableS
       log.error("FATAL Failed to transition table to state " + newState);
       throw new RuntimeException(e);
     }
-  }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5084855274168212194.java
+  }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7134397677486899021.java
 
 	
 

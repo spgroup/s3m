@@ -172,7 +172,7 @@ public final  class  ErrorPageHandlerImpl  implements ErrorPageHandlerService {
      * @param errorResource
      * @return
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1785883833713574136.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6805920393333210767.java
 @Override
     public String findErrorPage(SlingHttpServletRequest request, Resource errorResource) {
         if (!isEnabled()) {
@@ -181,7 +181,7 @@ public final  class  ErrorPageHandlerImpl  implements ErrorPageHandlerService {
 =======
 public String findErrorPage(SlingHttpServletRequest request, Resource errorResource) {
         if (!isEnabled()) { return null; }
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3802376427143490325.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1598489256769156050.java
 
         Resource page = null;
         final ResourceResolver resourceResolver = errorResource.getResourceResolver();
@@ -198,7 +198,7 @@ public String findErrorPage(SlingHttpServletRequest request, Resource errorResou
         final InheritanceValueMap pageProperties = new HierarchyNodeInheritanceValueMap(parent);
         String errorsPath = pageProperties.getInherited(ERROR_PAGE_PROPERTY, String.class);
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1785883833713574136.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6805920393333210767.java
         if (!errorPagesMap.isEmpty()) {
             // Get the best-matching Errors Path for this particular Request
             final String errorsPath = this.getErrorPagesPath(parent, errorPagesMap);
@@ -223,13 +223,13 @@ public String findErrorPage(SlingHttpServletRequest request, Resource errorResou
                 if (errorResourcePath.startsWith(mapPage.getKey())) {
                     errorsPath = mapPage.getValue();
                     break;
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3802376427143490325.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1598489256769156050.java
                 }
             }
         }
 
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1785883833713574136.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6805920393333210767.java
                 // No error-specific page could be found, use the "default" error page
                 // for the Root content path
                 if (page == null && StringUtils.isNotBlank(errorsPath)) {
@@ -246,7 +246,7 @@ public String findErrorPage(SlingHttpServletRequest request, Resource errorResou
             // for the Root content path
             if(page == null && StringUtils.isNotBlank(errorsPath)) {
                 page = resourceResolver.resolve(errorsPath);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3802376427143490325.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1598489256769156050.java
             }
         }
 
@@ -274,7 +274,7 @@ public String findErrorPage(SlingHttpServletRequest request, Resource errorResou
      * @param pageNames
      * @return
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2941323250011714895.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6463721198840836065.java
 private SearchResult executeQuery(ResourceResolver resourceResolver, String... pageNames) {
         final Session session = resourceResolver.adaptTo(Session.class);
         final Map<String, String> map = new HashMap<String, String>();
@@ -298,7 +298,7 @@ private SearchResult executeQuery(ResourceResolver resourceResolver, String... p
         final Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
         return query.getResult();
     }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6156886001115535934.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7459152160195037686.java
 
 	
 
@@ -330,7 +330,7 @@ private SearchResult executeQuery(ResourceResolver resourceResolver, String... p
      * @param result
      * @return list of resource paths of candidate error pages
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4797008783646392964.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7388069146410956585.java
 private List<String> filterResults(String rootPath, SearchResult result) {
         final List<Node> nodes = IteratorUtils.toList(result.getNodes());
         final List<String> resultPaths = new ArrayList<String>();
@@ -358,7 +358,7 @@ private List<String> filterResults(String rootPath, SearchResult result) {
 
         return resultPaths;
     }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2148250007814399182.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_984538340310941135.java
 
 	
 
@@ -422,7 +422,7 @@ private List<String> filterResults(String rootPath, SearchResult result) {
     }
 	
 
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8211589396114557554.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6375218477227425491.java
 private SortedMap<String, String> getErrorPagesMap(ResourceResolver resourceResolver) {
         final Session session = resourceResolver.adaptTo(Session.class);
         Map<String, String> map = new HashMap<String, String>();
@@ -458,7 +458,7 @@ private SortedMap<String, String> getErrorPagesMap(ResourceResolver resourceReso
 
         return mergeMaps(authoredMap, this.pathMap);
     }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8524006019963362862.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5734690557059268648.java
 
 	
 
@@ -534,7 +534,7 @@ private SortedMap<String, String> getErrorPagesMap(ResourceResolver resourceReso
      * @param resource
      * @return
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4952824885480586298.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7668149947819633051.java
 private String getErrorPagesPath(Resource resource, SortedMap<String, String> errorPagesMap) {
         // Path to evaluate against Root paths
         final String path = resource.getPath();
@@ -553,7 +553,7 @@ private String getErrorPagesPath(Resource resource, SortedMap<String, String> er
         }
         return null;
     }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7240155660108922360.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1331401887744305358.java
 
 	
 
@@ -737,13 +737,13 @@ private String getErrorPagesPath(Resource resource, SortedMap<String, String> er
      * @param response
      * @param statusCode
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6436445240906524591.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2586043947642150394.java
 @Override
     public void resetRequestAndResponse(SlingHttpServletRequest request, SlingHttpServletResponse response,
             int statusCode) {
 =======
 public void resetRequestAndResponse(SlingHttpServletRequest request, SlingHttpServletResponse response, int statusCode) {
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2227562727168154670.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8558775920869519608.java
         // Clear client libraries
         // TODO: Replace with proper API call is HtmlLibraryManager provides one in the future; Currently this is our only option.
         request.setAttribute(com.day.cq.widget.HtmlLibraryManager.class.getName() + ".included",
@@ -766,7 +766,7 @@ public void resetRequestAndResponse(SlingHttpServletRequest request, SlingHttpSe
      * @param slave
      * @return
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_9023038441426423455.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3027621179649008426.java
 private SortedMap<String, String> mergeMaps(SortedMap<String, String> master, SortedMap<String, String> slave) {
         SortedMap<String, String> map = new TreeMap<String, String>(new StringLengthComparator());
 
@@ -787,7 +787,7 @@ private SortedMap<String, String> mergeMaps(SortedMap<String, String> master, So
 
         return map;
     }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_227479819037878368.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_9144650711217146835.java
 
 	
 

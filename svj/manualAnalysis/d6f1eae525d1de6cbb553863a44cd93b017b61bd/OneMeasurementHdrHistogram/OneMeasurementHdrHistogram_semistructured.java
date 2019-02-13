@@ -55,7 +55,7 @@ public  class  OneMeasurementHdrHistogram  extends OneMeasurement {
 	
 
   public OneMeasurementHdrHistogram(String name, Properties props) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2122512567867020307.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8297728065718097237.java
     super(name);
     boolean shouldLog = Boolean.parseBoolean(props.getProperty("hdrhistogram.fileoutput", "false"));
     if (!shouldLog) {
@@ -96,7 +96,7 @@ public  class  OneMeasurementHdrHistogram  extends OneMeasurement {
 		histogramLogWriter.outputLogFormatVersion();
 		histogramLogWriter.outputStartTime(System.currentTimeMillis());
 		histogramLogWriter.outputLegend();
-	}>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1703414524012711379.java
+	}>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7633259182041094175.java
 
 	
 

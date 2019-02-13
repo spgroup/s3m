@@ -46,7 +46,7 @@ public  class  NetworkHttpClient  extends HttpClient {
         
         Collection<Header> headers = Lists.<Header>newArrayList(
             new BasicHeader("X-Twilio-Client", "java-" + Twilio.VERSION),
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_880304088601069826.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8371763915426669275.java
             new BasicHeader("User-Agent", "twilio-java/" + Twilio.VERSION + " (" + Twilio.JAVA_VERSION + ")"),
             new BasicHeader("Accept", "application/json"),
             new BasicHeader("Accept-Encoding", "utf-8")
@@ -54,7 +54,7 @@ public  class  NetworkHttpClient  extends HttpClient {
             new BasicHeader(HttpHeaders.USER_AGENT, "twilio-java/" + Twilio.VERSION),
             new BasicHeader(HttpHeaders.ACCEPT, "application/json"),
             new BasicHeader(HttpHeaders.ACCEPT_ENCODING, "utf-8")
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_105216276577492717.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5371162266223553684.java
         );
 
         client = HttpClientBuilder.create()

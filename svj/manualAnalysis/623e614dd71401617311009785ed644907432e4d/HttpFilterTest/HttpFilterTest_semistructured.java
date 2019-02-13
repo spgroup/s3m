@@ -240,13 +240,13 @@ public  class  HttpFilterTest {
                     }
 
                     @Override
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3220069548880735747.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1757903547384883477.java
                     public void proxyToServerConnectionSucceeded(ChannelHandlerContext serverCtx) {
                         proxyToServerConnectionSucceededMills[requestCount
 =======
                     public void proxyToServerConnectionSucceeded() {
                         proxyToServerConnectionSucceededNanos[requestCount
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2380738464227390088.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5031722450920763802.java
                                 .get()] = now();
                         serverCtxReference.set(serverCtx);
                     }
@@ -356,7 +356,7 @@ public  class  HttpFilterTest {
         assertEquals(403, response4.getStatusLine().getStatusCode());
         assertEquals(403, response5.getStatusLine().getStatusCode());
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3220069548880735747.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1757903547384883477.java
         assertNotNull("Server channel context from proxyToServerConnectionSucceeded() should not be null", serverCtxReference.get());
         InetSocketAddress remoteAddress = (InetSocketAddress) serverCtxReference.get().channel().remoteAddress();
         assertNotNull("Server's remoteAddress from proxyToServerConnectionSucceeded() should not be null", remoteAddress);
@@ -367,7 +367,7 @@ public  class  HttpFilterTest {
 
         webServer.stop();
 =======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2380738464227390088.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5031722450920763802.java
         server.stop();
     }
 	

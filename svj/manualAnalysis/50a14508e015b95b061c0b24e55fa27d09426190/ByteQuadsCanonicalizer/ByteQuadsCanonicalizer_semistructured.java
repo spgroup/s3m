@@ -304,14 +304,14 @@ public final  class  ByteQuadsCanonicalizer {
      * randomized seed value.
      */
     public static ByteQuadsCanonicalizer createRoot() {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3796375506561873537.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5452142331687315096.java
         /* [jackson-core#21]: Need to use a variable seed, to thwart hash-collision
          * based attacks.
          */
 =======
         // Need to use a variable seed, to thwart hash-collision based attacks.
         // 14-Feb-2017, tatu: Does this actually help?
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3403004617128926449.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6898282142224730205.java
         long now = System.currentTimeMillis();
         // ensure it's not 0; and might as well require to be odd so:
         int seed = (((int) now) + ((int) (now >>> 32))) | 1;

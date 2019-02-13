@@ -93,11 +93,11 @@ public  class  RenameUtil  extends ContextAwareBase {
         if (!EnvUtil.isJDK7OrHigher())
             return false;
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4876650511421074574.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2885682847478557646.java
         File parentOfTarget = targetFile.getParentFile();
 =======
     File parentOfTarget = targetFile.getAbsoluteFile().getParentFile();
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5716512372888525683.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2366732791601366185.java
 
         try {
             boolean onSameFileStore = FileStoreUtil.areOnSameFileStore(srcFile, parentOfTarget);

@@ -300,7 +300,7 @@ public abstract  class  AbstractVector  implements Vector {
         ensureArgumentIsNotNull(vector, "vector");
         ensureVectorIsSimilar(vector);
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8372887216550090961.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7884633187343168047.java
         return pipeTo(VectorOperations.ooPlaceInnerProduct(), vector);
 =======
         if (length != vector.length()) {
@@ -325,7 +325,7 @@ public abstract  class  AbstractVector  implements Vector {
         }
 
         return result;
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8261294008838246126.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5883533468711399570.java
     }
 	
 

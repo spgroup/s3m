@@ -507,7 +507,7 @@ public abstract  class  ReferenceTypeSerializer <T>
     private final JsonSerializer<Object> _findSerializer(SerializerProvider provider,
             Class<?> type, BeanProperty prop) throws JsonMappingException
     {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8801373193241246475.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6137084907492795091.java
         // 13-Mar-2017, tatu: Used to call `findTypeValueSerializer()`, but contextualization
         //   not working for that case for some reason
 //        return provider.findTypedValueSerializer(type, true, prop);
@@ -517,7 +517,7 @@ public abstract  class  ReferenceTypeSerializer <T>
         //   not working for that case for some reason
  //        return provider.findTypedValueSerializer(type, true, prop);
         return provider.findValueSerializer(type, prop);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1138742069617204465.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8064430794442642224.java
     }
 	
 

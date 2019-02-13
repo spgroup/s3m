@@ -602,7 +602,7 @@ public  class  CDBPhysicalBTree <K extends Comparable<K>, V>  extends CDBAbstrac
      * @param bs
      * @param timestamp
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6118424881494868556.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_161752255851311202.java
 =======
 public void
     applyToObject(Object bs, long timestamp) {
@@ -620,7 +620,7 @@ public void
                 break;
             case BTreeOp.CMD_WRITE_SIZE: applyWriteSize(cc.iparam()); break;
         }
-    }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5338066749579697123.java
+    }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_802891804470229057.java
 
 	
 

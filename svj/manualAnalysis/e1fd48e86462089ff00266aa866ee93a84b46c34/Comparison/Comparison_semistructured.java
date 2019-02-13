@@ -39,12 +39,12 @@ public  class  Comparison {
 	
 
 
-	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8019099466683905232.java
+	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4130584338455358948.java
 public static Runnable testA = new Runnable() {
 		@Override
 =======
 public static final Runnable testA = new Runnable() {
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3767185660846006243.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3528065750214931524.java
 		public void run() {
 			Vector3 v=Vector3.of(1,2,3);
 			Vector3 v2=Vector3.of(1,2,3);
@@ -56,12 +56,12 @@ public static final Runnable testA = new Runnable() {
 	};
 	
 
-	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1936197213641325189.java
+	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5228050724484194211.java
 public static Runnable testB = new Runnable() {
 		@Override
 =======
 public static final Runnable testB = new Runnable() {
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5227800517778704296.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3821564256273645193.java
 		public void run() {
 			AVector v=Vector.of(1,2,3);
 			AVector v2=Vector3.of(1,2,3);

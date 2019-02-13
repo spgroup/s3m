@@ -706,13 +706,13 @@ public  class  BuilderBasedDeserializer
     {
         final Class<?> activeView = _needViewProcesing ? ctxt.getActiveView() : null;
         final ExternalTypeHandler ext = _externalTypeIdHandler.start();
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_244075822008669541.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8016233440312280317.java
         
         for (JsonToken t = p.getCurrentToken(); t == JsonToken.FIELD_NAME; t = p.nextToken()) {
 =======
 
         for (JsonToken t = p.getCurrentToken(); t == JsonToken.FIELD_NAME; t = p.nextToken()) {
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7498923315395727828.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2902550693942688850.java
             String propName = p.getCurrentName();
             t = p.nextToken();
             SettableBeanProperty prop = _beanProperties.find(propName);

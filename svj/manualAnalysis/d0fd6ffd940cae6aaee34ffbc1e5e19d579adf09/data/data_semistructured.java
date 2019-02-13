@@ -288,7 +288,7 @@ abstract  class  HangingServiceRequestBase <T>  extends ServiceRequestBase<T> {
    *
    * @param state The state.
    */
-  <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_121248503510141706.java
+  <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5680973655838438743.java
 private void parseResponses(Object state) {
     HangingTraceStream tracingStream = null;
     ByteArrayOutputStream responseCopy = null;
@@ -380,7 +380,7 @@ private void parseResponses(Object state) {
       }
     }
   }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_217104024559588200.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3873315272300417545.java
 
 	
 

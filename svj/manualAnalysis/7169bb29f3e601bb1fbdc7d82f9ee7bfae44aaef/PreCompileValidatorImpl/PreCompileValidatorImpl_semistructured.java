@@ -230,14 +230,14 @@ public  class  PreCompileValidatorImpl  extends AbstractValidator  implements Pr
         Collection<InOutParam> inOutParams = new ArrayList<>();
         inOutParams.addAll(inputs);
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5893458702274019242.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2806199731823407989.java
         String message = "Duplicate " + getMessagePart(element.getClass()) + " found: " + element.getName();
         validateNotDuplicateInOutParam(inOutParams, element, message);
 =======
         String message = "Duplicate " + getMessagePart(element) + " found: " + element.getName();
         validateNotDuplicateInOutParam(inOutParams, element, message, errors);
         return errors;
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2579280279509021634.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1994431808342496736.java
     }
 	
 

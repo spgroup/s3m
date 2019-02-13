@@ -266,11 +266,11 @@ public  class  DefaultAsyncSupportResolver  implements AsyncSupportResolver {
 
             Throwable cause = e.getCause();
             if (cause != null) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5313937854615478606.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1629820020976074309.java
                 logger.error("Real error: {}", cause.getMessage(), cause);
 =======
                 logger.error("Real error: {}, error: {}", cause.getMessage(), cause);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6071340165495523284.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1370300035111167996.java
             }
             return null;
         }
@@ -286,11 +286,11 @@ public  class  DefaultAsyncSupportResolver  implements AsyncSupportResolver {
             logger.error("Failed to create AsyncSupport class: {}, error: {}", targetClassFQN, e);
             Throwable cause = e.getCause();
             if (cause != null) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5791877028707095968.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1722586465374598144.java
                 logger.error("Real error: {}", cause.getMessage(), cause);
 =======
                 logger.error("Real error: {}, error: {}", cause.getMessage(), cause);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4513324556422267703.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3865106370685800359.java
             }
             throw new IllegalArgumentException("Unable to create " + targetClassFQN, e);
         }

@@ -66,13 +66,13 @@ public  class  Accumulo {
   public static synchronized void updateAccumuloVersion(VolumeManager fs, int oldVersion) {
     for (Volume volume : fs.getVolumes()) {
       try {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2444288836224800215.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4726474115519826963.java
         if (getAccumuloPersistentVersion(volume) == oldVersion) {
           log.debug("Attempting to upgrade {}", volume);
 =======
         if (getAccumuloPersistentVersion(volume) == oldVersion) {
           log.debug("Attempting to upgrade " + volume);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5421097180663402668.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3504486206413336974.java
           Path dataVersionLocation = ServerConstants.getDataVersionLocation(volume);
           fs.create(new Path(dataVersionLocation, Integer.toString(ServerConstants.DATA_VERSION))).close();
           // TODO document failure mode & recovery if FS permissions cause above to work and below to fail ACCUMULO-2596

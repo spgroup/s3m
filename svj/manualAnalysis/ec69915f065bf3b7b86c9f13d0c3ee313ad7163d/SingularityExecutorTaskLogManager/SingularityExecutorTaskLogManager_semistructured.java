@@ -271,7 +271,7 @@ public  class  SingularityExecutorTaskLogManager {
     Optional<String> s3StorageClass, Optional<Long> applyS3StorageClassAfterBytes) {
     final String s3UploaderBucket = s3Bucket.or(taskDefinition.getExecutorData().getDefaultS3Bucket());
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3452218069091747688.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8576379180189908004.java
     if (Strings.isNullOrEmpty(s3UploaderBucket)) {
       log.warn("No s3 bucket specified, not writing s3 metadata for file matcher {}", globForS3Files);
       return false;
@@ -287,7 +287,7 @@ public  class  SingularityExecutorTaskLogManager {
 
     S3UploadMetadata s3UploadMetadata = new S3UploadMetadata(pathToS3Directory.toString(), globForS3Files, s3UploaderBucket, getS3KeyPattern(s3KeyPattern.or(taskDefinition.getExecutorData().getS3UploaderKeyPattern())), finished, Optional.<String> absent(),
         Optional.<Integer> absent(), Optional.<String> absent(), Optional.<String> absent(), Optional.<Long> absent(), s3StorageClass, applyS3StorageClassAfterBytes);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8550846758651036470.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_496697445407122850.java
 
     String s3UploadMetadataFileName = String.format("%s-%s%s", taskDefinition.getTaskId(), filenameHint, baseConfiguration.getS3UploaderMetadataSuffix());
 

@@ -151,14 +151,14 @@ public abstract  class  Maker {
         case NLIKE:
 			String queryStr = ((String) value);
             queryStr = queryStr.replace('%', '*').replace('_', '?');
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_367109076816895520.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_9146378517877238620.java
             queryStr = queryStr.replace("ESCAPEDPERCENTAGE","%").replace("ESCAPEDUNDERSCORE","_");
 			x = QueryBuilders.wildcardQuery(name, queryStr);
 =======
             queryStr = queryStr.replace("&PERCENT","%").replace("&UNDERSCORE","_");
 			WildcardQueryBuilder wildcardQuery = QueryBuilders.wildcardQuery(name, queryStr);
 			x = isQuery ? wildcardQuery : FilterBuilders.queryFilter(wildcardQuery);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2406893939453659017.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5057441786517907928.java
 			break;
 		case GT:
             x = QueryBuilders.rangeQuery(name).gt(value);

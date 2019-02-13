@@ -311,7 +311,7 @@ public final  class  RuntimeSchema <T>  extends MappedSchema<T> {
                 fields.add(field);
             }
         }
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3641485575847264848.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5028878687378318849.java
         return new RuntimeSchema<T>(typeClass, fields, i,
 =======
         if (fields.isEmpty())
@@ -320,7 +320,7 @@ public final  class  RuntimeSchema <T>  extends MappedSchema<T> {
                     + typeClass + ".  All fields are either transient/static.");
         }
         return new RuntimeSchema<>(typeClass, fields, i,
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3516035039383872262.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1642540705261823114.java
                 RuntimeEnv.newInstantiator(typeClass));
     }
 	

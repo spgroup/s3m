@@ -46,7 +46,7 @@ public  class  OutOfTimeCrossValidatorRunner {
     
 	
     private static PredictiveModelBuilder getRandomForestBuilder(int maxDepth, int numTrees) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4844278192557265831.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3910786821584104194.java
         TreeBuilder treeBuilder = new TreeBuilder().ignoreAttributeAtNodeProbability(.7).minLeafInstances(20);
         RandomForestBuilder randomForestBuilder = new RandomForestBuilder(treeBuilder).numTrees(numTrees);
         UpdatableRandomForestBuilder updatableRandomForestBuilder = (UpdatableRandomForestBuilder) new UpdatableRandomForestBuilder(randomForestBuilder).rebuildThreshold(2).splitNodeThreshold(2);
@@ -55,7 +55,7 @@ public  class  OutOfTimeCrossValidatorRunner {
         TreeBuilder treeBuilder = new TreeBuilder().maxDepth(maxDepth).ignoreAttributeAtNodeProbability(.7).minLeafInstances(20);
         RandomForestBuilder RandomForestBuilder = new RandomForestBuilder(treeBuilder).numTrees(numTrees);
         return RandomForestBuilder;
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_9163523878376536677.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3658431219295151031.java
     }
 
 }

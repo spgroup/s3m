@@ -73,13 +73,13 @@ public  class  ForTransformerTest  extends TransformersTestParent {
     @Test
     public void testNoVarName() throws Exception {
         exception.expect(RuntimeException.class);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3886475248103147365.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3461526214240373248.java
         exception.expectMessage("Argument[] violates character rules");
         transformAndThrowFirstException(transformer, "  in  collection" );
 =======
         exception.expectMessage("var name");
         transformAndThrowFirstException(transformer, "  in  collection");
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3419780120601737758.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6416086617091978351.java
     }
 	
 
@@ -167,14 +167,14 @@ public  class  ForTransformerTest  extends TransformersTestParent {
     @Test
     public void testMapVarNameContainInvalidChars() throws Exception {
         exception.expect(RuntimeException.class);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1993024427155571795.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7172690534733497259.java
         exception.expectMessage("Argument[(k v m)] violates character rules.");
         transformAndThrowFirstException(transformer, "(k v m)  in  collection" );
 =======
         exception.expectMessage("var name");
         exception.expectMessage("invalid");
         transformAndThrowFirstException(transformer, "(k v m)  in  collection");
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2620525927086732799.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6910673679649299455.java
     }
 	
 

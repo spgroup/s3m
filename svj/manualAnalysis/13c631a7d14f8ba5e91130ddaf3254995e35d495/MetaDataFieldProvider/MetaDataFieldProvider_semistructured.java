@@ -130,7 +130,7 @@ class  MetaDataFieldProvider  implements Serializable {
                 String columnName = meta.getColumnName(i);
 
                 if (columnName.equals(columnLabel)) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5262297592416445834.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3628025772693845307.java
                     try {
                         String columnSchema = meta.getSchemaName(i);
                         String columnTable = meta.getTableName(i);
@@ -152,7 +152,7 @@ class  MetaDataFieldProvider  implements Serializable {
                         // ResultSetMetaData.getSchemaName and/or ResultSetMetaData.getTableName methods
                         name = name(columnLabel);
                     }
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1869418694379423450.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3899015455788640402.java
                 }
                 else {
                     name = name(columnLabel);

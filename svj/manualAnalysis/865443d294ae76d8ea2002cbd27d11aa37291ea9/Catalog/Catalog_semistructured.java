@@ -310,7 +310,7 @@ public final  class  Catalog {
     protected Map<String, String> getOriginalTableNames() {
         Map<String, String> origTableNames = new HashMap<String, String>();
         Pattern p = Pattern.compile("CREATE[\\s]+TABLE[\\s]+(.*?)[\\s]+", Pattern.CASE_INSENSITIVE);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4225438087212595990.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_886250506624790340.java
         File ddl = this.benchmark.getDatabaseDDL(DatabaseType.HSQLDB);
         System.out.println(ddl);
         String ddlContents = FileUtil.readFile(ddl);
@@ -322,7 +322,7 @@ public final  class  Catalog {
         } catch(IOException ioe) {
             throw new RuntimeException(ioe);
         }
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_774079424508449213.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4655360155487733476.java
         assert(ddlContents.isEmpty() == false);
         Matcher m = p.matcher(ddlContents);
         while (m.find()) {

@@ -68,19 +68,19 @@ public  class  App  extends MvvmfxCdiApplication {
 		
 		makePrimaryStageInjectable(stage);
 		
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4981938252985643610.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6942502837996077506.java
 		stage.setTitle(resourceBundle.getString("window.title"));
 =======
 		stage.setTitle("mvvmFX Contacts demo");
 
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_617679651004460464.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7183658030981643424.java
 		
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4981938252985643610.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6942502837996077506.java
 		ViewTuple<MainView, MainViewModel> main = FluentViewLoader.fxmlView(MainView.class).resourceBundle(resourceBundle).load();
 =======
 		
 		ViewTuple<MainView, MainViewModel> main = FluentViewLoader.fxmlView(MainView.class).resourceBundle(resourceBundle).load();
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_617679651004460464.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7183658030981643424.java
 		
 		stage.setScene(new Scene(main.getView()));
 		stage.show();

@@ -79,7 +79,7 @@ public  class  SlangBuilder {
     }
 	
 
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_571732822246989134.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6666747757082586132.java
 =======
 public SlangBuildResults buildSlangContent(String projectPath, String contentPath, String testsPath, List<String> testSuits, boolean runTestsInParallel) {
 
@@ -102,7 +102,7 @@ public SlangBuildResults buildSlangContent(String projectPath, String contentPat
         }
 
         return new SlangBuildResults(compiledSources.size(), runTestsResults);
-    }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1086475370969583306.java
+    }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2863867618959539696.java
 
 	
 

@@ -542,7 +542,7 @@ public  class  PushManager <T extends ApnsPushNotification>  implements ApnsConn
 	 * <p>Queries the APNs feedback service for expired tokens using a reasonable default timeout. Be warned that this
 	 * is a <strong>destructive operation</strong>. According to Apple's documentation:</p>
 	 *
-	 * <blockquote>The feedback serviceï¿½s list is cleared after you read it. Each time you connect to the feedback
+	 * <blockquote>The feedback service’s list is cleared after you read it. Each time you connect to the feedback
 	 * service, the information it returns lists only the failures that have happened since you last
 	 * connected.</blockquote>
 	 *
@@ -648,7 +648,7 @@ public  class  PushManager <T extends ApnsPushNotification>  implements ApnsConn
       this.dispatchThread.interrupt();
     }
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7663040305532556669.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2374105389599158026.java
     this
 =======
     new Thread(new Runnable() {
@@ -661,7 +661,7 @@ public  class  PushManager <T extends ApnsPushNotification>  implements ApnsConn
         }
       }
     })
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2967018747969967796.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4438392111450258482.java
     .listenerExecutorService.submit(new Runnable() {
       public void run() {
         try {

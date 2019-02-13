@@ -482,7 +482,7 @@ public  class  DBWorkload {
 	        assert (wrkld.getNumTxnTypes() >= 0);
 	        assert (xmlConfig != null);
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7174936769003551792.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2730564196762849272.java
 =======
 	        // ----------------------------------------------------------------
 	        // BENCHMARK MODULE
@@ -534,7 +534,7 @@ public  class  DBWorkload {
 	        LOG.debug("Using the following transaction types: " + tt);
 	        
 	        benchList.add(bench);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_985124358547717048.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5628038585619884012.java
         }
         assert(benchList.isEmpty() == false);
         assert (benchList.get(0) != null);

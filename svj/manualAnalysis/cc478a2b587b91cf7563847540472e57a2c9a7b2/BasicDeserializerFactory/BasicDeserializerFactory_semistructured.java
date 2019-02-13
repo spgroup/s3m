@@ -908,7 +908,7 @@ public abstract  class  BasicDeserializerFactory
                 metadata = PropertyMetadata.construct(req, desc, idx, def);
             }
         }
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8168372185544009550.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5050917337937632831.java
         JavaType type = resolveMemberAndTypeAnnotations(ctxt, param, param.getType());
         BeanProperty.Std property = new BeanProperty.Std(name, type,
 =======
@@ -917,7 +917,7 @@ public abstract  class  BasicDeserializerFactory
         java.lang.reflect.Type paramType = param.getParameterType();
         JavaType t0 = beanDesc.resolveType(paramType);
         BeanProperty.Std property = new BeanProperty.Std(name, t0,
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4480943424179790677.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5762281339374209557.java
                 intr.findWrapperName(param),
                 beanDesc.getClassAnnotations(), param, metadata);
         // Type deserializer: either comes from property (and already resolved)

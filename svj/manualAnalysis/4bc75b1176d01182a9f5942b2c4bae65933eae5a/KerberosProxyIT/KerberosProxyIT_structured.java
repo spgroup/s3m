@@ -193,7 +193,7 @@ public  class  KerberosProxyIT  extends AccumuloITBase {
     boolean success = false;
     ClusterUser rootUser = kdc.getRootUser();
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4453951332927113763.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4799533799878004060.java
     for (int i = 0; i < 10 && !success; i++) {
       UserGroupInformation ugi;
       try {
@@ -255,7 +255,7 @@ public  class  KerberosProxyIT  extends AccumuloITBase {
         }
       }
     }
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2252312026652519307.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3092042001016068723.java
 
     assertTrue("Failed to connect to the proxy repeatedly", success);
   }

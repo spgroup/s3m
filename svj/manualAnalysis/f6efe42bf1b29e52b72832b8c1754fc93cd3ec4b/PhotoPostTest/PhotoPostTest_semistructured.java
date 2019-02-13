@@ -69,13 +69,13 @@ public  class  PhotoPostTest  extends TypeTest {
     public void setDataWithoutSource() {
         File file = new File("some_path");
         post.setData(file);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_997062311688601633.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7211475157231215534.java
         Map detail = post.detail();
         assertEquals(file, detail.get("data[0]"));
 =======
         Map<String, Object> detail = post.detail();
         assertEquals(file, detail.get("data"));
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6534471439857406360.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1078705341748667970.java
         // clear
         this.setup();
     }
@@ -92,13 +92,13 @@ public  class  PhotoPostTest  extends TypeTest {
     public void setSourceWithoutData() {
         String embedCode = "external";
         post.setSource(embedCode);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1767060204880733095.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3125228500251656361.java
         Map detail = post.detail();
         assertEquals(embedCode, detail.get("source[0]"));
 =======
         Map<String, Object> detail = post.detail();
         assertEquals(embedCode, detail.get("source"));
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3798125685160198280.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8501882672640838202.java
         // clear
         this.setup();
     }

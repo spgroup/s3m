@@ -233,7 +233,7 @@ public  class  AsyncLoopSteps  extends AbstractSteps {
     }
 	
 
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2779532658157801388.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7777398933038203309.java
 private void collectBranchesData(
             RunEnvironment runEnv,
             ExecutionRuntimeServices executionRuntimeServices,
@@ -261,7 +261,7 @@ private void collectBranchesData(
             );
         }
     }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3978419730835436781.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_474077863510120277.java
 
 	
 

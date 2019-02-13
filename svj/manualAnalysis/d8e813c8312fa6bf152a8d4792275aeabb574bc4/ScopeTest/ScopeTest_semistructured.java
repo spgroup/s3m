@@ -23,7 +23,7 @@ public  class  ScopeTest {
 	
 
     @Test
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6572404509719058689.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5493765803646443428.java
     public void testFxmlScopedView() throws Exception {
 
         final ScopesFxmlParentView parentView = FluentViewLoader.fxmlView(ScopesFxmlParentView.class).load().getCodeBehind();
@@ -39,7 +39,7 @@ public  class  ScopeTest {
 		final ScopedViewModelB viewModelB = FluentViewLoader.fxmlView(ScopedFxmlViewB.class).load().getViewModel();
 		
 		verifyScopes(viewModelA, viewModelB);
-	}>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4166821551789851370.java
+	}>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3117046881333791796.java
 
 	
 

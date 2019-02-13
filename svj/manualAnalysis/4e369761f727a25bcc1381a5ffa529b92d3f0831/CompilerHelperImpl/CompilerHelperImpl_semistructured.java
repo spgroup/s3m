@@ -103,12 +103,12 @@ public  class  CompilerHelperImpl  implements CompilerHelper {
 
     @Override
     public Set<SystemProperty> loadSystemProperties(List<String> systemPropertyFiles) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5399519536732558646.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_911019090479369544.java
         return loadPropertiesFromFiles(convertToFiles(systemPropertyFiles), PROPERTIES_FILE_EXTENSIONS, SP_DIR);
 =======
         String propertiesRelativePath = CONFIG_DIR + File.separator + SP_DIR;
         return loadPropertiesFromFiles(convertToFiles(systemPropertyFiles), SLANG_FILE_EXTENSIONS, propertiesRelativePath);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1770164926857970392.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4531301293205820617.java
     }
 	
 

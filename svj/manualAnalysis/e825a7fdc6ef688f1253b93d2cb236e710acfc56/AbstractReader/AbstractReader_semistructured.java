@@ -361,14 +361,14 @@ public abstract  class  AbstractReader {
         validParameterAnnotations.add(QueryParam.class);
         validParameterAnnotations.add(HeaderParam.class);
         validParameterAnnotations.add(FormParam.class);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3093903069858348372.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3485935676788956971.java
         validParameterAnnotations.add(RequestParam.class);
         validParameterAnnotations.add(RequestBody.class);
         validParameterAnnotations.add(PathVariable.class);
 =======
         validParameterAnnotations.add(RequestParam.class);
         validParameterAnnotations.add(RequestBody.class);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8767917208670532547.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4046814768989446614.java
 
         boolean hasValidAnnotation = false;
         for (Annotation potentialAnnotation : parameterAnnotations) {

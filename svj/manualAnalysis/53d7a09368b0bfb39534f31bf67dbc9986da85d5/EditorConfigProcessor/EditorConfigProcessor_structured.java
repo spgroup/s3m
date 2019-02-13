@@ -113,7 +113,7 @@ public  class  EditorConfigProcessor {
     boolean changedStyle = false;
     boolean changed = false;
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5876607207058032637.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1502823257981059536.java
     for (int i = 0; i < rules.size(); i++) {
       EditorConfig.OutPair rule = rules.get(i);
       String key = rule.getKey().toLowerCase();
@@ -188,7 +188,7 @@ public  class  EditorConfigProcessor {
         LOG.log(Level.WARNING, "Unknown property: {0}", key);
       }
     }
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4718496091292464848.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8646686792571869696.java
 
     Preferences codeStyle = CodeStylePreferences.get(primaryFile, primaryFile.getMIMEType()).getPreferences();
     if (changedStyle) {

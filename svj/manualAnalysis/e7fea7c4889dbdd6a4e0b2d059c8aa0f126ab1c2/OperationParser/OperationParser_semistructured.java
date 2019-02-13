@@ -243,7 +243,7 @@ public  class  OperationParser {
             isEmpty = false;
         }
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1163947958904941973.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5288124120380787771.java
         if (NumberUtils.isNumber(schema.maximum())) {
             String filteredMaximum = schema.maximum().replaceAll(COMMA, StringUtils.EMPTY);
             schemaObject.setMaximum(new BigDecimal(filteredMaximum));
@@ -257,7 +257,7 @@ public  class  OperationParser {
         ReaderUtils.getStringListFromStringArray(schema._enum()).ifPresent(schemaObject::setEnum);
 =======
         ReaderUtils.getStringListFromStringArray(schema.allowableValues()).ifPresent(schemaObject::setEnum);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8592531279742629392.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3180388294626847386.java
         getExternalDocumentation(schema.externalDocs()).ifPresent(schemaObject::setExternalDocs);
 
         if (isEmpty) {

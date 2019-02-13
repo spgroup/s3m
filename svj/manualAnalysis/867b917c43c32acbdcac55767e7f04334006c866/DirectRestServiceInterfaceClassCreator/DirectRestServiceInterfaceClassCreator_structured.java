@@ -92,7 +92,7 @@ public  class  DirectRestServiceInterfaceClassCreator  extends DirectRestBaseSou
   private String getMethodCallback(JMethod method) {
     final String returnType = method.getReturnType().getParameterizedQualifiedSourceName();
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8979866310420501076.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5632588759689761544.java
     if (method.getReturnType().isPrimitive() != null) {
       JPrimitiveType primitiveType = method.getReturnType().isPrimitive();
       return "org.fusesource.restygwt.client.MethodCallback<" + primitiveType.getQualifiedBoxedSourceName() + "> callback";
@@ -103,7 +103,7 @@ public  class  DirectRestServiceInterfaceClassCreator  extends DirectRestBaseSou
     } else {
       return "org.fusesource.restygwt.client.MethodCallback<" + returnType + "> callback";
     }
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5830689545364902890.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8427594471681803815.java
   }
 
 	

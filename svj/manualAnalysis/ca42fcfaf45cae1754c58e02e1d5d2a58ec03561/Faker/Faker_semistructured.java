@@ -88,12 +88,12 @@ public  class  Faker  implements Resolver {
         this.book = new Book(this, proxiedFakeValueService);
         this.business = new Business(proxiedFakeValueService);
         this.color = new Color(proxiedFakeValueService);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_9210364370149569789.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7319434258719309601.java
         this.company = new Company(this, proxiedFakeValueService);
         this.hacker = new Hacker(proxiedFakeValueService);
 =======
         this.company = new Company(this, proxiedFakeValueService, randomService);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7085287395418805556.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2399738213015451017.java
         this.options = new Options(randomService);
         this.code = new Code(randomService);
         this.finance = new Finance(proxiedFakeValueService, randomService);

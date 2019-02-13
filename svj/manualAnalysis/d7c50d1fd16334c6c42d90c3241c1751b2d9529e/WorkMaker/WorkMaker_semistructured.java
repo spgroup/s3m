@@ -99,13 +99,13 @@ public  class  WorkMaker {
       for (Entry<Key,Value> entry : s) {
         // Extract the useful bits from the status key
         ReplicationSchema.StatusSection.getFile(entry.getKey(), file);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8508212269053030016.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2447109278679003903.java
         String tableId = ReplicationSchema.StatusSection.getTableId(entry.getKey());
         log.info("Processing replication status record for " + file + " on table " + tableId);
 =======
         ReplicationSchema.StatusSection.getTableId(entry.getKey(), tableId);
         log.debug("Processing replication status record for " + file + " on table " + tableId);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4241136838181528861.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8746090424488435549.java
 
         Status status;
         try {

@@ -72,7 +72,7 @@ public  class  VaultInventoryLister  extends AbstractGlacierCommand {
       while ((line = reader.readLine()) != null) {
         System.out.println(line);
       }
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8709332275265208949.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2860813463563693424.java
     } catch (final IOException e) {
       System.err.println("Something went wrong while reading inventory.");
 =======
@@ -81,7 +81,7 @@ public  class  VaultInventoryLister  extends AbstractGlacierCommand {
       e.printStackTrace();
     } catch (final IOException e) {
       System.err.println(e.getLocalizedMessage());
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1917333557279030140.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3447046138532564629.java
       e.printStackTrace();
     }
   }

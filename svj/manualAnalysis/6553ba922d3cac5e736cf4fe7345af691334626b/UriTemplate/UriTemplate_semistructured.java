@@ -1116,7 +1116,7 @@ public  class  UriTemplate  implements Serializable {
     * @param parts
     * @return
     */
-   <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8986276948119538079.java
+   <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_277458485982400057.java
 private int[] getIndexForPartsWithNullsFirstIfQueryOrRegularSequnceIfNot(final Expression expression, List<String> parts)
    {
       int[] index = new int[parts.size()];
@@ -1166,7 +1166,7 @@ private int[] getIndexForPartsWithNullsFirstIfQueryOrRegularSequnceIfNot(final E
          }
       }
       return index;
-   }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5537540229077953013.java
+   }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7959687856420400811.java
 
 
 }

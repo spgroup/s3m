@@ -7719,7 +7719,7 @@ public  class  DSL {
      *
      * @see #coalesce(Field, Field...)
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5318597578594308990.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4864160603656304298.java
 @Support
     public static <T> Field<T> coalesce(Field<T> field, T value) {
         return coalesce(field, Utils.field(value, field));
@@ -7727,7 +7727,7 @@ public  class  DSL {
 @Support
     public static <T> Field<T> coalesce(Field<T> field, T value) {
         return coalesce(field, Utils.field(value));
-    }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7889091251661824230.java
+    }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1149801574842400465.java
 
 	
 

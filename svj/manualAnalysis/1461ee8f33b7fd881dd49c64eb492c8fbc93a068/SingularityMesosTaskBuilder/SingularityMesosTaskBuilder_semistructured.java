@@ -367,13 +367,13 @@ class  SingularityMesosTaskBuilder {
     bldr.setExecutor(ExecutorInfo.newBuilder()
         .setCommand(commandBuilder.build())
         .setExecutorId(ExecutorID.newBuilder().setValue(task.getDeploy().getCustomExecutorId().or(idGenerator.getNextExecutorId())))
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4803127296033452922.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2992140401747925187.java
         .setSource(task.getDeploy().getCustomExecutorSource().or(taskId.getId())) // set source to taskId for use in statistics endpoint
         .addAllResources(buildMesosResources(desiredExecutorResources))
 =======
         .setSource(task.getDeploy().getCustomExecutorSource().or(taskId.getId()))
         .addAllResources(buildMesosResources(desiredExecutorResources, task.getRequest().getRequiredRole()))
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5631479778947461143.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2724669926707385832.java
         .build()
         );
 

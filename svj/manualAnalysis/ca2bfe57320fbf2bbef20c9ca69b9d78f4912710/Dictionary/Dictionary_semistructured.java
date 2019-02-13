@@ -121,7 +121,7 @@ public  class  Dictionary {
 	 * @return Dictionary
 	 */
 	public static synchronized Dictionary initial(Configuration cfg){
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_416045446925572651.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6285597805720452428.java
 		
 		synchronized(Dictionary.class){
 			if(singleton == null){
@@ -161,7 +161,7 @@ public  class  Dictionary {
 					}
 
 					return singleton;
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6222708799391182778.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4280970282520874771.java
 				}
 				for(String location:cfg.getRemoteExtStopWordDictionarys()){
 					pool.scheduleAtFixedRate(new Monitor(location), 10, 60, TimeUnit.SECONDS);
@@ -349,7 +349,7 @@ public  class  Dictionary {
 					logger.error("ik-analyzer",e);
 				}finally{
 					try {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_530855044372329643.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3674378106757564627.java
 						is.close();
 						is = null;
 =======
@@ -357,7 +357,7 @@ public  class  Dictionary {
 							is.close();
 							is = null;
 						}
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2971688398725654485.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8052868433849843477.java
 					} catch (IOException e) {
 						logger.error("ik-analyzer",e);
 					}
@@ -518,7 +518,7 @@ public  class  Dictionary {
 
 				}finally{
 					try {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1722071652998405526.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2658589671629193343.java
 						is.close();
 						is = null;
 =======
@@ -526,7 +526,7 @@ public  class  Dictionary {
 							is.close();
 							is = null;
 						}
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1288805548640341368.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_669313918257397529.java
 					} catch (IOException e) {
 						logger.error("ik-analyzer",e);
 					}
@@ -605,7 +605,7 @@ public  class  Dictionary {
 
 		_SurnameDict = new DictSegment((char)0);
 		Path file = PathUtils.get(configuration.getDictRoot(), Dictionary.PATH_DIC_SURNAME);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5030552341899029243.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3683676398592275077.java
         InputStream is = null;
         try {
             is = new FileInputStream(file.toFile());
@@ -665,7 +665,7 @@ public  class  Dictionary {
 				logger.error("ik-analyzer",e);
 			}
 		}
-	}>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3040694844503695565.java
+	}>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7253007493867124724.java
 
 	
 

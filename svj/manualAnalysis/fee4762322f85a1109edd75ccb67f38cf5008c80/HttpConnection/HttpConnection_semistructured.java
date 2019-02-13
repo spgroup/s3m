@@ -721,7 +721,7 @@ public  class  HttpConnection  implements Connection {
             conn.setInstanceFollowRedirects(false); // don't rely on native redirection support
             conn.setConnectTimeout(req.timeout());
             conn.setReadTimeout(req.timeout());
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6745100274417521906.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5678960814158640844.java
 
             if (conn instanceof HttpsURLConnection) {
                 if (!req.isValidateSSLCertificates()) {
@@ -734,7 +734,7 @@ public  class  HttpConnection  implements Connection {
             if (req.method() == Method.POST)
 =======
             if (req.method().hasBody())
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2924389481643487423.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7394674279525108554.java
                 conn.setDoOutput(true);
             if (req.cookies().size() > 0)
                 conn.addRequestProperty("Cookie", getRequestCookieString(req));

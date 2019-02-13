@@ -121,7 +121,7 @@ public  class  BoundedRangeFileInputStream  extends InputStream {
       if (closed) {
         throw new IOException("Stream closed");
       }
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5599465945823279128.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7516977222972088336.java
       ((Seekable) in).seek(pos);
       try {
         ret = AccessController.doPrivileged(new PrivilegedExceptionAction<Integer>() {
@@ -138,7 +138,7 @@ public  class  BoundedRangeFileInputStream  extends InputStream {
 =======
       in.seek(pos);
       ret = in.read(b, off, n);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6890177704520623644.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7796364462479857622.java
     }
     if (ret < 0) {
       end = pos;

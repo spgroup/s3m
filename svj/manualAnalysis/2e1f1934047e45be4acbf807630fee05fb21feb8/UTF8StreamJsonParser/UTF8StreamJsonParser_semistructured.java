@@ -3606,7 +3606,7 @@ public  class  UTF8StreamJsonParser
     {
         StringBuilder sb = new StringBuilder(matchedPart);
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1738059369503776371.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4933279404819348797.java
         /* Let's just try to find what appears to be the token, using
          * regular Java identifier character rules. It's just a heuristic,
          * nothing fancy here (nor fast).
@@ -3644,7 +3644,7 @@ public  class  UTF8StreamJsonParser
                 sb.append("...");
          }
          _reportError("Unrecognized token '"+sb.toString()+"': was expecting "+msg);
-     }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2235241551971114105.java
+     }>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_4401696819387141927.java
 
 	
 

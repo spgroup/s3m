@@ -141,7 +141,7 @@ public  class  SparseIndexedVector  extends ASparseIndexedVector {
 		if (source instanceof ASparseVector)
 			return create((ASparseVector) source);
 		int srcLength = source.length();
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2558920269945362833.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1003045747889603762.java
 		if (srcLength == 0)
 			throw new IllegalArgumentException("Can't create a length 0 SparseIndexedVector");
 		int[] indexes = source.nonZeroIndices();
@@ -158,13 +158,13 @@ public  class  SparseIndexedVector  extends ASparseIndexedVector {
 		double[] vals=new double[len];
 		source.getElements(vals,0,indexes);
 		return wrap(srcLength,Index.wrap(indexes),vals);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_454834123535426987.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5463415478622377611.java
 	}
 	
 
 	public static SparseIndexedVector create(ASparseVector source) {
 		int length = source.length();
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2391914234921434947.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8636000978881063574.java
 		if (length == 0)
 			throw new IllegalArgumentException("Can't create a length 0 SparseIndexedVector");
 		Index ixs = source.nonSparseIndex();
@@ -179,7 +179,7 @@ public  class  SparseIndexedVector  extends ASparseIndexedVector {
 		Index ixs=source.nonSparseIndex();
 		AVector nsv=source.nonSparseValues();
 		return wrap(length,ixs,nsv.toDoubleArray());
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2406150834068649148.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3524197019849473010.java
 	}
 	
 
@@ -237,7 +237,7 @@ public  class  SparseIndexedVector  extends ASparseIndexedVector {
 	}
 	
 
-	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_977302476545152425.java
+	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_83273393887648808.java
 public AVector innerProduct(SparseColumnMatrix m) {
 		int cc = m.columnCount();
 		int rc = m.rowCount();
@@ -248,7 +248,7 @@ public AVector innerProduct(SparseColumnMatrix m) {
 		}
 		return r;
 	}=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_5801563195371851588.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_9031165440586768572.java
 
 	
 
@@ -270,7 +270,7 @@ public AVector innerProduct(SparseColumnMatrix m) {
 	
 
 	@Override
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_156496673181665893.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_9151989374498445393.java
 	public AVector innerProduct(AMatrix m) {
 		if (m instanceof SparseRowMatrix) {
 			return this.innerProduct((SparseRowMatrix) m);
@@ -290,7 +290,7 @@ public AVector innerProduct(SparseColumnMatrix m) {
         }
 		int cc=m.columnCount();
 		int rc=m.rowCount();
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1468705288129213672.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1057209194642370339.java
 		checkLength(rc);
 		AVector r = SparseIndexedVector.createLength(cc);
 		for (int i = 0; i < cc; i++) {
@@ -318,11 +318,11 @@ public AVector innerProduct(SparseColumnMatrix m) {
 		if (factor == 0.0)
 			return;
 		if (v instanceof ASparseVector) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_267211301552307864.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4283681794899159860.java
 			addMultiple((ASparseVector) v, factor);
 =======
 			addMultiple(((ASparseVector)v).toSparseIndexedVector(),factor);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8397248059704791715.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6555635729893841374.java
 			return;
 		}
 		super.addMultiple(v, factor);
@@ -331,7 +331,7 @@ public AVector innerProduct(SparseColumnMatrix m) {
 
 	@Override
 	public void add(double[] src, int srcOffset) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1424861087727497762.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_9020063087662168266.java
 		includeIndices(Vectorz.wrap(src, srcOffset, length));
 		for (int i = 0; i < data.length; i++) {
 			data[i] += src[srcOffset + index.get(i)];
@@ -343,7 +343,7 @@ public AVector innerProduct(SparseColumnMatrix m) {
 			int ix=index.get(i);
 			double sv=src[srcOffset+ix];
 			if (sv!=0.0) data[i]+=src[srcOffset+ix]; // TODO: benchamark does conditional help??
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6083650599150080266.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_277932293620642740.java
 		}
 	}
 	
@@ -351,7 +351,7 @@ public AVector innerProduct(SparseColumnMatrix m) {
 	@Override
 	public void add(ASparseVector v) {
 		checkSameLength(v);
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_102974715482439755.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8728582200805576206.java
 		if (v instanceof ZeroVector) {
 			return;
 		}
@@ -368,12 +368,12 @@ public AVector innerProduct(SparseColumnMatrix m) {
 		for (int i=0; i<n; i++) {
 			int ix=vix.get(i);
 			addAt(ix,vns.unsafeGet(i));
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1775371077230073800.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2889097506756623613.java
 		}
 	}
 	
 
-	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_6537188759466966809.java
+	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8097374771106373702.java
 public void addMultiple(ASparseVector v, double factor) {
 		checkSameLength(v);
 		if ((factor == 0.0) || (v instanceof ZeroVector)) {
@@ -384,7 +384,7 @@ public void addMultiple(ASparseVector v, double factor) {
 			data[i] += v.unsafeGet(index.get(i)) * factor;
 		}
 	}=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1657094903590027027.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_781971766966552149.java
 
 	
 	
@@ -404,7 +404,7 @@ public void addMultiple(ASparseVector v, double factor) {
 
 	@Override
 	public void sub(AVector v) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_300598999840868181.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7610937351500556156.java
 		if (v instanceof ASparseVector) {
 			sub((ASparseVector) v);
 			return;
@@ -415,11 +415,11 @@ public void addMultiple(ASparseVector v, double factor) {
 		}
 =======
 		addMultiple(v,-1.0);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2999234968827069842.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_9115823927944271408.java
 	}
 	
 
-	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2951356442087810908.java
+	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7239539786394233596.java
 public void sub(ASparseVector v) {
 		if (v instanceof ZeroVector) {
 			return;
@@ -429,7 +429,7 @@ public void sub(ASparseVector v) {
 			data[i] -= v.unsafeGet(index.get(i));
 		}
 	}=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6862177122121554600.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6740067735169253112.java
 
 	
 
@@ -496,14 +496,14 @@ public void sub(ASparseVector v) {
 	}
 	
 
-	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5639755025744185024.java
+	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3183347151395388548.java
 public void multiply(ADenseArrayVector v) {
 		multiply(v.getArray(), v.getArrayOffset());
 =======
 @Override
 	public void multiply(ADenseArrayVector v) {
 		multiply(v.getArray(),v.getArrayOffset());
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_1501027516657068250.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7935545000102352906.java
 	}
 	
 
@@ -817,7 +817,7 @@ public void multiply(ADenseArrayVector v) {
 
 	@Override
 	public void addAt(int i, double value) {
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7139241667830425521.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3204708401509268276.java
 		// worth checking for zero when dealing with sparse vectors
 		// can often avoid a relatively expensive index lookup
 		if (value == 0.0)
@@ -834,7 +834,7 @@ public void multiply(ADenseArrayVector v) {
 			int npos=index.seekPosition(i);
 			data=DoubleArrays.insert(data,npos,value);
 			index=index.insert(npos,i);
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_936772902637191363.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3485029027243044558.java
 		} else {
 			data[ip] += value;
 		}
@@ -909,7 +909,7 @@ public void multiply(ADenseArrayVector v) {
 	 * 
 	 * @param ixs
 	 */
-	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4538889179550395005.java
+	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_3918757842683785787.java
 public void includeIndices(int[] ixs) {
 		int[] nixs = IntArrays.mergeSorted(index.data, ixs);
 		if (nixs.length == index.length())
@@ -941,7 +941,7 @@ protected void includeIndices(int[] ixs) {
 			if (z==nixs[i]) {
 				ndata[i]=data[si];
 				si++; 
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2883319568274805170.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3777691677234387032.java
 			}
 		}
 		this.data = ndata;
@@ -970,7 +970,7 @@ protected void includeIndices(int[] ixs) {
 	 * 
 	 * @param ixs
 	 */
-	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4040494004463817758.java
+	<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_7313433787927110339.java
 public void includeIndices(AVector v) {
 		if (v instanceof ASparseIndexedVector) {
 			includeIndices((ASparseIndexedVector) v);
@@ -982,7 +982,7 @@ protected Index includeIndices(AVector v) {
 		Index ix=v.nonSparseIndex();
 		includeIndices(ix);
 		return ix;
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2959874344282396688.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_9094087046857488174.java
 	}
 	
 

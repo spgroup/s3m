@@ -83,12 +83,12 @@ public  interface  Validation <E, T>  extends Applicative<Validation<?, ?>, E, T
      * @return {@code Valid(value)}
      * @throws NullPointerException if supplier is null
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_1024041340350999654.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_4657049990561427761.java
 static <E, T> Validation<E, T> valid(Supplier<? extends T> supplier) {
         Objects.requireNonNull(supplier, "supplier is null");
         return new Valid<>(supplier.get());
     }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_2377210366049395357.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_7217100853147059433.java
 
 	
 
@@ -116,12 +116,12 @@ static <E, T> Validation<E, T> valid(Supplier<? extends T> supplier) {
      * @return {@code Invalid(error)}
      * @throws NullPointerException if supplier is null
      */
-    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_2646518793100201377.java
+    <<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_8348233923438621157.java
 static <E, T> Validation<E, T> invalid(Supplier<? extends E> supplier) {
         Objects.requireNonNull(supplier, "supplier is null");
         return new Invalid<>(supplier.get());
     }=======
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_8612776713508616396.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6987073505007240573.java
 
 	
 
@@ -488,7 +488,7 @@ static <E, T> Validation<E, T> invalid(Supplier<? extends E> supplier) {
         Objects.requireNonNull(kind, "kind is null");
         Validation<List<E>, ? extends Function<? super T, ? extends U>> validation = (Validation<List<E>, ? extends Function<? super T, ? extends U>>) ((Object) kind);
 
-<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_595531705356358417.java
+<<<<<<< C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var1_5158690321278559884.java
         if (isValid() && validation.isValid()) {
             return valid(() -> {
                 Function<? super T, ? extends U> f = validation.get();
@@ -501,7 +501,7 @@ static <E, T> Validation<E, T> invalid(Supplier<? extends E> supplier) {
             U u = f.apply(this.get());
             return valid(u);
         } else if(isValid() && validation.isInvalid()) {
->>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_3228587025310838869.java
+>>>>>>> C:\Users\GUILHE~1\AppData\Local\Temp\fstmerge_var2_6102144924203739959.java
             List<E> errors = validation.getError();
             return invalid(errors);
         } else if (isInvalid() && validation.isValid()) {
