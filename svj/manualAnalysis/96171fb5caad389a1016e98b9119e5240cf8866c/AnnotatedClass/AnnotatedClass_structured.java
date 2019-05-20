@@ -1,0 +1,955 @@
+package com.fasterxml.jackson.databind.introspect;
+
+import java.lang.annotation.Annotation;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+import java.lang.reflect.*;
+import java.util.*;
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.cfg.MapperConfig;
+import com.fasterxml.jackson.databind.introspect.ClassIntrospector.MixInResolver;
+import com.fasterxml.jackson.databind.type.TypeBindings;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.databind.util.Annotations;
+import com.fasterxml.jackson.databind.util.ClassUtil;
+
+public final class AnnotatedClass extends Annotated implements TypeResolutionContext {
+
+    private static final AnnotationMap[] NO_ANNOTATION_MAPS = new AnnotationMap[0];
+
+    /*
+    /**********************************************************
+    /* Configuration
+    /**********************************************************
+     */
+    /**
+     * @since 2.7
+     */
+    protected final JavaType _type;
+
+    /**
+     * Class for which annotations apply, and that owns other
+     * components (constructors, methods)
+     */
+    protected final Class<?> _class;
+
+    /**
+     * Type bindings to use for members of {@link #_class}.
+     *
+     * @since 2.7
+     */
+    protected final TypeBindings _bindings;
+
+    /**
+     * Ordered set of super classes and interfaces of the
+     * class itself: included in order of precedence
+     */
+    protected final List<JavaType> _superTypes;
+
+    /**
+     * Filter used to determine which annotations to gather; used
+     * to optimize things so that unnecessary annotations are
+     * ignored.
+     */
+    protected final AnnotationIntrospector _annotationIntrospector;
+
+    /**
+     * @since 2.7
+     */
+    protected final TypeFactory _typeFactory;
+
+    /**
+     * Object that knows mapping of mix-in classes (ones that contain
+     * annotations to add) with their target classes (ones that
+     * get these additional annotations "mixed in").
+     */
+    protected final MixInResolver _mixInResolver;
+
+    /**
+     * Primary mix-in class; one to use for the annotated class
+     * itself. Can be null.
+     */
+    protected final Class<?> _primaryMixIn;
+
+    /*
+    /**********************************************************
+    /* Gathered information
+    /**********************************************************
+     */
+    /**
+     * Combined list of Jackson annotations that the class has,
+     * including inheritable ones from super classes and interfaces
+     */
+    protected final Annotations _classAnnotations;
+
+    /**
+     * Flag to indicate whether creator information has been resolved
+     * or not.
+     */
+    protected boolean _creatorsResolved = false;
+
+    /**
+     * Default constructor of the annotated class, if it has one.
+     */
+    protected AnnotatedConstructor _defaultConstructor;
+
+    /**
+     * Single argument constructors the class has, if any.
+     */
+    protected List<AnnotatedConstructor> _constructors;
+
+    /**
+     * Single argument static methods that might be usable
+     * as factory methods
+     */
+    protected List<AnnotatedMethod> _creatorMethods;
+
+    /**
+     * Member methods of interest; for now ones with 0 or 1 arguments
+     * (just optimization, since others won't be used now)
+     */
+    protected AnnotatedMethodMap _memberMethods;
+
+    /**
+     * Member fields of interest: ones that are either public,
+     * or have at least one annotation.
+     */
+    protected List<AnnotatedField> _fields;
+
+    /**
+     * Lazily determined property to see if this is a non-static inner
+     * class.
+     *
+     * @since 2.8.7
+     */
+    protected transient Boolean _nonStaticInnerClass;
+
+    /**
+     * Constructor will not do any initializations, to allow for
+     * configuring instances differently depending on use cases
+     */
+    AnnotatedClass(JavaType type, Class<?> rawType, List<JavaType> superTypes, Class<?> primaryMixIn, Annotations classAnnotations, TypeBindings bindings, AnnotationIntrospector aintr, MixInResolver mir, TypeFactory tf) {
+        _type = type;
+        _class = rawType;
+        _classAnnotations = classAnnotations;
+        _bindings = bindings;
+        _superTypes = superTypes;
+        _annotationIntrospector = aintr;
+        _typeFactory = tf;
+        _mixInResolver = mir;
+        _primaryMixIn = primaryMixIn;
+    }
+
+    /*
+    /**********************************************************
+    /* Life-cycle
+    /**********************************************************
+     */
+    /**
+     * @deprecated Since 2.9, use methods in {@link AnnotatedClassResolver} instead.
+     */
+    @Deprecated
+    public static AnnotatedClass construct(JavaType type, MapperConfig<?> config) {
+        return construct(type, config, (MixInResolver) config);
+    }
+
+    /**
+     * @deprecated Since 2.9, use methods in {@link AnnotatedClassResolver} instead.
+     */
+    @Deprecated
+    public static AnnotatedClass construct(JavaType type, MapperConfig<?> config, MixInResolver mir) {
+        return AnnotatedClassResolver.resolve(config, type, mir);
+    }
+
+    /**
+     * Method similar to {@link #construct}, but that will NOT include
+     * information from supertypes; only class itself and any direct
+     * mix-ins it may have.
+     */
+    /**
+     * @deprecated Since 2.9, use methods in {@link AnnotatedClassResolver} instead.
+     */
+    @Deprecated
+    public static AnnotatedClass constructWithoutSuperTypes(Class<?> raw, MapperConfig<?> config) {
+        return constructWithoutSuperTypes(raw, config, config);
+    }
+
+    /**
+     * @deprecated Since 2.9, use methods in {@link AnnotatedClassResolver} instead.
+     */
+    @Deprecated
+    public static AnnotatedClass constructWithoutSuperTypes(Class<?> raw, MapperConfig<?> config, MixInResolver mir) {
+        return AnnotatedClassResolver.resolveWithoutSuperTypes(config, raw, mir);
+    }
+
+    /*
+    /**********************************************************
+    /* TypeResolutionContext implementation
+    /**********************************************************
+     */
+    @Override
+    public JavaType resolveType(Type type) {
+        return _typeFactory.constructType(type, _bindings);
+    }
+
+    /*
+    /**********************************************************
+    /* Annotated impl 
+    /**********************************************************
+     */
+    @Override
+    public Class<?> getAnnotated() {
+        return _class;
+    }
+
+    @Override
+    public int getModifiers() {
+        return _class.getModifiers();
+    }
+
+    @Override
+    public String getName() {
+        return _class.getName();
+    }
+
+    @Override
+    public <A extends Annotation> A getAnnotation(Class<A> acls) {
+        return _classAnnotations.get(acls);
+    }
+
+    @Override
+    public boolean hasAnnotation(Class<?> acls) {
+        return _classAnnotations.has(acls);
+    }
+
+    @Override
+    public boolean hasOneOf(Class<? extends Annotation>[] annoClasses) {
+        return _classAnnotations.hasOneOf(annoClasses);
+    }
+
+    @Override
+    public Class<?> getRawType() {
+        return _class;
+    }
+
+    @Override
+    public JavaType getType() {
+        return _type;
+    }
+
+    /*
+    /**********************************************************
+    /* Public API, generic accessors
+    /**********************************************************
+     */
+    public Annotations getAnnotations() {
+        return _classAnnotations;
+    }
+
+    public boolean hasAnnotations() {
+        return _classAnnotations.size() > 0;
+    }
+
+    public AnnotatedConstructor getDefaultConstructor() {
+        if (!_creatorsResolved) {
+            resolveCreators();
+        }
+        return _defaultConstructor;
+    }
+
+    public List<AnnotatedConstructor> getConstructors() {
+        if (!_creatorsResolved) {
+            resolveCreators();
+        }
+        return _constructors;
+    }
+
+    public List<AnnotatedMethod> getStaticMethods() {
+        if (!_creatorsResolved) {
+            resolveCreators();
+        }
+        return _creatorMethods;
+    }
+
+    public Iterable<AnnotatedMethod> memberMethods() {
+        if (_memberMethods == null) {
+            resolveMemberMethods();
+        }
+        return _memberMethods;
+    }
+
+    public int getMemberMethodCount() {
+        if (_memberMethods == null) {
+            resolveMemberMethods();
+        }
+        return _memberMethods.size();
+    }
+
+    public AnnotatedMethod findMethod(String name, Class<?>[] paramTypes) {
+        if (_memberMethods == null) {
+            resolveMemberMethods();
+        }
+        return _memberMethods.find(name, paramTypes);
+    }
+
+    public int getFieldCount() {
+        if (_fields == null) {
+            resolveFields();
+        }
+        return _fields.size();
+    }
+
+    public Iterable<AnnotatedField> fields() {
+        if (_fields == null) {
+            resolveFields();
+        }
+        return _fields;
+    }
+
+    /**
+     * @since 2.9
+     */
+    public boolean isNonStaticInnerClass() {
+        Boolean B = _nonStaticInnerClass;
+        if (B == null) {
+            _nonStaticInnerClass = B = ClassUtil.isNonStaticInnerClass(_class);
+        }
+        return B.booleanValue();
+    }
+
+    /*
+    /**********************************************************
+    /* Public API, main-level resolution methods
+    /**********************************************************
+     */
+    /**
+     * Initialization method that will recursively collect Jackson
+     * annotations for this class and all super classes and
+     * interfaces.
+     */
+    /*
+    /**********************************************************
+    /* Public API, main-level resolution methods
+    /**********************************************************
+     */
+    /**
+     * Initialization method that will find out all constructors
+     * and potential static factory methods the class has.
+     */
+    private void resolveCreators() {
+        TypeResolutionContext typeContext = this;
+        List<AnnotatedConstructor> constructors = null;
+        if (!_type.isEnumType()) {
+            ClassUtil.Ctor[] declaredCtors = ClassUtil.getConstructors(_class);
+            for (ClassUtil.Ctor ctor : declaredCtors) {
+                if (_isIncludableConstructor(ctor.getConstructor())) {
+                    if (ctor.getParamCount() == 0) {
+                        _defaultConstructor = _constructDefaultConstructor(ctor, typeContext);
+                    } else {
+                        if (constructors == null) {
+                            constructors = new ArrayList<AnnotatedConstructor>(Math.max(10, declaredCtors.length));
+                        }
+                        constructors.add(_constructNonDefaultConstructor(ctor, typeContext));
+                    }
+                }
+            }
+        }
+        if (constructors == null) {
+            _constructors = Collections.emptyList();
+        } else {
+            _constructors = constructors;
+        }
+        if (_primaryMixIn != null) {
+            if (_defaultConstructor != null || !_constructors.isEmpty()) {
+                _addConstructorMixIns(_primaryMixIn);
+            }
+        }
+        if (_annotationIntrospector != null) {
+            if (_defaultConstructor != null) {
+                if (_annotationIntrospector.hasIgnoreMarker(_defaultConstructor)) {
+                    _defaultConstructor = null;
+                }
+            }
+            if (_constructors != null) {
+                for (int i = _constructors.size(); --i >= 0; ) {
+                    if (_annotationIntrospector.hasIgnoreMarker(_constructors.get(i))) {
+                        _constructors.remove(i);
+                    }
+                }
+            }
+        }
+        List<AnnotatedMethod> creatorMethods = null;
+        for (Method m : _findClassMethods(_class)) {
+            if (!Modifier.isStatic(m.getModifiers())) {
+                continue;
+            }
+            if (creatorMethods == null) {
+                creatorMethods = new ArrayList<AnnotatedMethod>(8);
+            }
+            creatorMethods.add(_constructCreatorMethod(m, typeContext));
+        }
+        if (creatorMethods == null) {
+            _creatorMethods = Collections.emptyList();
+        } else {
+            _creatorMethods = creatorMethods;
+            if (_primaryMixIn != null) {
+                _addFactoryMixIns(_primaryMixIn);
+            }
+            if (_annotationIntrospector != null) {
+                for (int i = _creatorMethods.size(); --i >= 0; ) {
+                    if (_annotationIntrospector.hasIgnoreMarker(_creatorMethods.get(i))) {
+                        _creatorMethods.remove(i);
+                    }
+                }
+            }
+        }
+        _creatorsResolved = true;
+    }
+
+    /**
+     * Method for resolving member method information: aggregating all non-static methods
+     * and combining annotations (to implement method-annotation inheritance)
+     * 
+     * @param methodFilter Filter used to determine which methods to include
+     */
+    private void resolveMemberMethods() {
+        _memberMethods = _resolveMemberMethods();
+    }
+
+    private AnnotatedMethodMap _resolveMemberMethods() {
+        AnnotatedMethodMap memberMethods = new AnnotatedMethodMap();
+        AnnotatedMethodMap mixins = new AnnotatedMethodMap();
+        _addMemberMethods(_class, this, memberMethods, _primaryMixIn, mixins);
+        for (JavaType type : _superTypes) {
+            Class<?> mixin = (_mixInResolver == null) ? null : _mixInResolver.findMixInClassFor(type.getRawClass());
+            _addMemberMethods(type.getRawClass(), new TypeResolutionContext.Basic(_typeFactory, type.getBindings()), memberMethods, mixin, mixins);
+        }
+        if (_mixInResolver != null) {
+            Class<?> mixin = _mixInResolver.findMixInClassFor(Object.class);
+            if (mixin != null) {
+                _addMethodMixIns(_class, memberMethods, mixin, mixins);
+            }
+        }
+        if (_annotationIntrospector != null) {
+            if (!mixins.isEmpty()) {
+                Iterator<AnnotatedMethod> it = mixins.iterator();
+                while (it.hasNext()) {
+                    AnnotatedMethod mixIn = it.next();
+                    try {
+                        Method m = Object.class.getDeclaredMethod(mixIn.getName(), mixIn.getRawParameterTypes());
+                        if (m != null) {
+                            AnnotatedMethod am = _constructMethod(m, this);
+                            _addMixOvers(mixIn.getAnnotated(), am, false);
+                            memberMethods.add(am);
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+            }
+        }
+        return memberMethods;
+    }
+
+    /**
+     * Method that will collect all member (non-static) fields
+     * that are either public, or have at least a single annotation
+     * associated with them.
+     */
+    private void resolveFields() {
+        Map<String, AnnotatedField> foundFields = _findFields(_type, this, null);
+        List<AnnotatedField> f;
+        if (foundFields == null || foundFields.size() == 0) {
+            f = Collections.emptyList();
+        } else {
+            f = new ArrayList<AnnotatedField>(foundFields.size());
+            f.addAll(foundFields.values());
+        }
+        _fields = f;
+    }
+
+    /*
+    /**********************************************************
+    /* Helper methods for resolving class annotations
+    /* (resolution consisting of inheritance, overrides,
+    /* and injection of mix-ins as necessary)
+    /**********************************************************
+     */
+    /**
+     * Helper method for adding any mix-in annotations specified
+     * class might have.
+     */
+    /*
+    /**********************************************************
+    /* Helper methods for populating creator (ctor, factory) information
+    /**********************************************************
+     */
+    protected void _addConstructorMixIns(Class<?> mixin) {
+        MemberKey[] ctorKeys = null;
+        int ctorCount = (_constructors == null) ? 0 : _constructors.size();
+        for (ClassUtil.Ctor ctor0 : ClassUtil.getConstructors(mixin)) {
+            Constructor<?> ctor = ctor0.getConstructor();
+            if (ctor.getParameterTypes().length == 0) {
+                if (_defaultConstructor != null) {
+                    _addMixOvers(ctor, _defaultConstructor, false);
+                }
+            } else {
+                if (ctorKeys == null) {
+                    ctorKeys = new MemberKey[ctorCount];
+                    for (int i = 0; i < ctorCount; ++i) {
+                        ctorKeys[i] = new MemberKey(_constructors.get(i).getAnnotated());
+                    }
+                }
+                MemberKey key = new MemberKey(ctor);
+                for (int i = 0; i < ctorCount; ++i) {
+                    if (!key.equals(ctorKeys[i])) {
+                        continue;
+                    }
+                    _addMixOvers(ctor, _constructors.get(i), true);
+                    break;
+                }
+            }
+        }
+    }
+
+    protected void _addFactoryMixIns(Class<?> mixin) {
+        MemberKey[] methodKeys = null;
+        int methodCount = _creatorMethods.size();
+        for (Method m : ClassUtil.getDeclaredMethods(mixin)) {
+            if (!Modifier.isStatic(m.getModifiers())) {
+                continue;
+            }
+            if (m.getParameterTypes().length == 0) {
+                continue;
+            }
+            if (methodKeys == null) {
+                methodKeys = new MemberKey[methodCount];
+                for (int i = 0; i < methodCount; ++i) {
+                    methodKeys[i] = new MemberKey(_creatorMethods.get(i).getAnnotated());
+                }
+            }
+            MemberKey key = new MemberKey(m);
+            for (int i = 0; i < methodCount; ++i) {
+                if (!key.equals(methodKeys[i])) {
+                    continue;
+                }
+                _addMixOvers(m, _creatorMethods.get(i), true);
+                break;
+            }
+        }
+    }
+
+    /*
+    /**********************************************************
+    /* Helper methods for populating method information
+    /**********************************************************
+     */
+    protected void _addMemberMethods(Class<?> cls, TypeResolutionContext typeContext, AnnotatedMethodMap methods, Class<?> mixInCls, AnnotatedMethodMap mixIns) {
+        if (mixInCls != null) {
+            _addMethodMixIns(cls, methods, mixInCls, mixIns);
+        }
+        if (cls == null) {
+            return;
+        }
+        for (Method m : _findClassMethods(cls)) {
+            if (!_isIncludableMemberMethod(m)) {
+                continue;
+            }
+            AnnotatedMethod old = methods.find(m);
+            if (old == null) {
+                AnnotatedMethod newM = _constructMethod(m, typeContext);
+                methods.add(newM);
+                old = mixIns.remove(m);
+                if (old != null) {
+                    _addMixOvers(old.getAnnotated(), newM, false);
+                }
+            } else {
+                _addMixUnders(m, old);
+                if (old.getDeclaringClass().isInterface() && !m.getDeclaringClass().isInterface()) {
+                    methods.add(old.withMethod(m));
+                }
+            }
+        }
+    }
+
+    protected void _addMethodMixIns(Class<?> targetClass, AnnotatedMethodMap methods, Class<?> mixInCls, AnnotatedMethodMap mixIns) {
+        List<Class<?>> parents = ClassUtil.findRawSuperTypes(mixInCls, targetClass, true);
+        for (Class<?> mixin : parents) {
+            for (Method m : ClassUtil.getDeclaredMethods(mixin)) {
+                if (!_isIncludableMemberMethod(m)) {
+                    continue;
+                }
+                AnnotatedMethod am = methods.find(m);
+                if (am != null) {
+                    _addMixUnders(m, am);
+                } else {
+                    am = mixIns.find(m);
+                    if (am != null) {
+                        _addMixUnders(m, am);
+                    } else {
+                        mixIns.add(_constructMethod(m, this));
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+    /**********************************************************
+    /* Helper methods for populating field information
+    /**********************************************************
+     */
+    protected Map<String, AnnotatedField> _findFields(JavaType type, TypeResolutionContext typeContext, Map<String, AnnotatedField> fields) {
+        JavaType parent = type.getSuperClass();
+        if (parent != null) {
+            final Class<?> cls = type.getRawClass();
+            fields = _findFields(parent, new TypeResolutionContext.Basic(_typeFactory, parent.getBindings()), fields);
+            for (Field f : ClassUtil.getDeclaredFields(cls)) {
+                if (!_isIncludableField(f)) {
+                    continue;
+                }
+                if (fields == null) {
+                    fields = new LinkedHashMap<String, AnnotatedField>();
+                }
+                fields.put(f.getName(), _constructField(f, typeContext));
+            }
+            if (_mixInResolver != null) {
+                Class<?> mixin = _mixInResolver.findMixInClassFor(cls);
+                if (mixin != null) {
+                    _addFieldMixIns(mixin, cls, fields);
+                }
+            }
+        }
+        return fields;
+    }
+
+    /**
+     * Method called to add field mix-ins from given mix-in class (and its fields)
+     * into already collected actual fields (from introspected classes and their
+     * super-classes)
+     */
+    protected void _addFieldMixIns(Class<?> mixInCls, Class<?> targetClass, Map<String, AnnotatedField> fields) {
+        List<Class<?>> parents = ClassUtil.findSuperClasses(mixInCls, targetClass, true);
+        for (Class<?> mixin : parents) {
+            for (Field mixinField : ClassUtil.getDeclaredFields(mixin)) {
+                if (!_isIncludableField(mixinField)) {
+                    continue;
+                }
+                String name = mixinField.getName();
+                AnnotatedField maskedField = fields.get(name);
+                if (maskedField != null) {
+                    _addOrOverrideAnnotations(maskedField, mixinField.getDeclaredAnnotations());
+                }
+            }
+        }
+    }
+
+    /*
+    /**********************************************************
+    /* Helper methods, constructing value types
+    /**********************************************************
+     */
+    protected AnnotatedMethod _constructMethod(Method m, TypeResolutionContext typeContext) {
+        if (_annotationIntrospector == null) {
+            return new AnnotatedMethod(typeContext, m, _emptyAnnotationMap(), null);
+        }
+        return new AnnotatedMethod(typeContext, m, _collectRelevantAnnotations(m.getDeclaredAnnotations()), null);
+    }
+
+    protected AnnotatedConstructor _constructDefaultConstructor(ClassUtil.Ctor ctor, TypeResolutionContext typeContext) {
+        if (_annotationIntrospector == null) {
+            return new AnnotatedConstructor(typeContext, ctor.getConstructor(), _emptyAnnotationMap(), NO_ANNOTATION_MAPS);
+        }
+        return new AnnotatedConstructor(typeContext, ctor.getConstructor(), _collectRelevantAnnotations(ctor.getDeclaredAnnotations()), NO_ANNOTATION_MAPS);
+    }
+
+    protected AnnotatedConstructor _constructNonDefaultConstructor(ClassUtil.Ctor ctor, TypeResolutionContext typeContext) {
+        final int paramCount = ctor.getParamCount();
+        if (_annotationIntrospector == null) {
+            return new AnnotatedConstructor(typeContext, ctor.getConstructor(), _emptyAnnotationMap(), _emptyAnnotationMaps(paramCount));
+        }
+        if (paramCount == 0) {
+            return new AnnotatedConstructor(typeContext, ctor.getConstructor(), _collectRelevantAnnotations(ctor.getDeclaredAnnotations()), NO_ANNOTATION_MAPS);
+        }
+        AnnotationMap[] resolvedAnnotations;
+        Annotation[][] paramAnns = ctor.getParameterAnnotations();
+        if (paramCount != paramAnns.length) {
+            resolvedAnnotations = null;
+            Class<?> dc = ctor.getDeclaringClass();
+            if (dc.isEnum() && (paramCount == paramAnns.length + 2)) {
+                Annotation[][] old = paramAnns;
+                paramAnns = new Annotation[old.length + 2][];
+                System.arraycopy(old, 0, paramAnns, 2, old.length);
+                resolvedAnnotations = _collectRelevantAnnotations(paramAnns);
+            } else {
+                if (dc.isMemberClass()) {
+                    if (paramCount == (paramAnns.length + 1)) {
+                        Annotation[][] old = paramAnns;
+                        paramAnns = new Annotation[old.length + 1][];
+                        System.arraycopy(old, 0, paramAnns, 1, old.length);
+                        resolvedAnnotations = _collectRelevantAnnotations(paramAnns);
+                    }
+                }
+            }
+            if (resolvedAnnotations == null) {
+                throw new IllegalStateException("Internal error: constructor for " + ctor.getDeclaringClass().getName() + " has mismatch: " + paramCount + " parameters; " + paramAnns.length + " sets of annotations");
+            }
+        } else {
+            resolvedAnnotations = _collectRelevantAnnotations(paramAnns);
+        }
+        return new AnnotatedConstructor(typeContext, ctor.getConstructor(), _collectRelevantAnnotations(ctor.getDeclaredAnnotations()), resolvedAnnotations);
+    }
+
+    protected AnnotatedMethod _constructCreatorMethod(Method m, TypeResolutionContext typeContext) {
+        final int paramCount = m.getParameterTypes().length;
+        if (_annotationIntrospector == null) {
+            return new AnnotatedMethod(typeContext, m, _emptyAnnotationMap(), _emptyAnnotationMaps(paramCount));
+        }
+        if (paramCount == 0) {
+            return new AnnotatedMethod(typeContext, m, _collectRelevantAnnotations(m.getDeclaredAnnotations()), NO_ANNOTATION_MAPS);
+        }
+        return new AnnotatedMethod(typeContext, m, _collectRelevantAnnotations(m.getDeclaredAnnotations()), _collectRelevantAnnotations(m.getParameterAnnotations()));
+    }
+
+    protected AnnotatedField _constructField(Field f, TypeResolutionContext typeContext) {
+        if (_annotationIntrospector == null) {
+            return new AnnotatedField(typeContext, f, _emptyAnnotationMap());
+        }
+        return new AnnotatedField(typeContext, f, _collectRelevantAnnotations(f.getDeclaredAnnotations()));
+    }
+
+    private AnnotationMap _emptyAnnotationMap() {
+        return new AnnotationMap();
+    }
+
+    private AnnotationMap[] _emptyAnnotationMaps(int count) {
+        if (count == 0) {
+            return NO_ANNOTATION_MAPS;
+        }
+        AnnotationMap[] maps = new AnnotationMap[count];
+        for (int i = 0; i < count; ++i) {
+            maps[i] = _emptyAnnotationMap();
+        }
+        return maps;
+    }
+
+    /*
+    /**********************************************************
+    /* Helper methods, inclusion filtering
+    /**********************************************************
+     */
+    protected boolean _isIncludableMemberMethod(Method m) {
+        if (Modifier.isStatic(m.getModifiers())) {
+            return false;
+        }
+        if (m.isSynthetic() || m.isBridge()) {
+            return false;
+        }
+        int pcount = m.getParameterTypes().length;
+        return (pcount <= 2);
+    }
+
+    private boolean _isIncludableField(Field f) {
+        if (f.isSynthetic()) {
+            return false;
+        }
+        int mods = f.getModifiers();
+        if (Modifier.isStatic(mods)) {
+            return false;
+        }
+        return true;
+    }
+
+    // for [databind#1005]: do not use or expose synthetic constructors
+    private boolean _isIncludableConstructor(Constructor<?> c) {
+        return !c.isSynthetic();
+    }
+
+    /*
+    /**********************************************************
+    /* Helper methods, attaching annotations
+    /**********************************************************
+     */
+    private AnnotationMap[] _collectRelevantAnnotations(Annotation[][] anns) {
+        int len = anns.length;
+        AnnotationMap[] result = new AnnotationMap[len];
+        for (int i = 0; i < len; ++i) {
+            result[i] = _collectRelevantAnnotations(anns[i]);
+        }
+        return result;
+    }
+
+    private AnnotationMap _collectRelevantAnnotations(Annotation[] anns) {
+        return _addAnnotationsIfNotPresent(_annotationIntrospector, new AnnotationMap(), anns);
+    }
+
+    /* Helper method used to add all applicable annotations from given set.
+     * Takes into account possible "annotation bundles" (meta-annotations to
+     * include instead of main-level annotation)
+     */
+    private static List<Annotation> _addFromBundle(Annotation bundle, List<Annotation> result) {
+        for (Annotation a : ClassUtil.findClassAnnotations(bundle.annotationType())) {
+            if ((a instanceof Target) || (a instanceof Retention)) {
+                continue;
+            }
+            if (result == null) {
+                result = new ArrayList<Annotation>();
+            }
+            result.add(a);
+        }
+        return result;
+    }
+
+    private static void _addAnnotationsIfNotPresent(AnnotationIntrospector intr, AnnotatedMember target, Annotation[] anns) {
+        if (anns == null) {
+            return;
+        }
+        List<Annotation> fromBundles = null;
+        for (Annotation ann : anns) {
+            // first: direct annotations
+            boolean wasNotPresent = target.addIfNotPresent(ann);
+            if (wasNotPresent && intr.isAnnotationBundle(ann)) {
+                fromBundles = _addFromBundle(ann, fromBundles);
+            }
+        }
+        if (fromBundles != null) {
+            // and secondarily handle bundles, if any found: precedence important
+            _addAnnotationsIfNotPresent(intr, target, fromBundles.toArray(new Annotation[fromBundles.size()]));
+        }
+    }
+
+    private void _addOrOverrideAnnotations(AnnotatedMember target, Annotation[] anns) {
+        if (anns == null) {
+            return;
+        }
+        List<Annotation> fromBundles = null;
+        for (Annotation ann : anns) {
+            boolean wasModified = target.addOrOverride(ann);
+            if (wasModified && _annotationIntrospector.isAnnotationBundle(ann)) {
+                fromBundles = _addFromBundle(ann, fromBundles);
+            }
+        }
+        if (fromBundles != null) {
+            _addOrOverrideAnnotations(target, fromBundles.toArray(new Annotation[fromBundles.size()]));
+        }
+    }
+
+    /*
+    /**********************************************************
+    /* Static helper methods, attaching annotations
+    /**********************************************************
+     */
+    // Helper method used to add all applicable annotations from given set.
+    // Takes into account possible "annotation bundles" (meta-annotations to
+    // include instead of main-level annotation)
+    private static AnnotationMap _addAnnotationsIfNotPresent(AnnotationIntrospector intr, AnnotationMap result, Annotation[] anns) {
+        if (anns != null) {
+            List<Annotation> fromBundles = null;
+            for (Annotation ann : anns) {
+                // first: direct annotations
+                // note: we will NOT filter out non-Jackson anns any more
+                boolean wasNotPresent = result.addIfNotPresent(ann);
+                if (wasNotPresent && intr.isAnnotationBundle(ann)) {
+                    fromBundles = _addFromBundle(ann, fromBundles);
+                }
+            }
+            if (fromBundles != null) {
+                // and secondarily handle bundles, if any found: precedence important
+                _addAnnotationsIfNotPresent(intr, result, fromBundles.toArray(new Annotation[fromBundles.size()]));
+            }
+        }
+        return result;
+    }
+
+    /**
+     * @param addParamAnnotations Whether parameter annotations are to be
+     *   added as well
+     */
+    private void _addMixOvers(Constructor<?> mixin, AnnotatedConstructor target, boolean addParamAnnotations) {
+        _addOrOverrideAnnotations(target, mixin.getDeclaredAnnotations());
+        if (addParamAnnotations) {
+            Annotation[][] pa = mixin.getParameterAnnotations();
+            for (int i = 0, len = pa.length; i < len; ++i) {
+                for (Annotation a : pa[i]) {
+                    target.addOrOverrideParam(i, a);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param addParamAnnotations Whether parameter annotations are to be
+     *   added as well
+     */
+    private void _addMixOvers(Method mixin, AnnotatedMethod target, boolean addParamAnnotations) {
+        _addOrOverrideAnnotations(target, mixin.getDeclaredAnnotations());
+        if (addParamAnnotations) {
+            Annotation[][] pa = mixin.getParameterAnnotations();
+            for (int i = 0, len = pa.length; i < len; ++i) {
+                for (Annotation a : pa[i]) {
+                    target.addOrOverrideParam(i, a);
+                }
+            }
+        }
+    }
+
+    /**
+     * Method that will add annotations from specified source method to target method,
+     * but only if target does not yet have them.
+     */
+    private void _addMixUnders(Method src, AnnotatedMethod target) {
+        _addAnnotationsIfNotPresent(_annotationIntrospector, target, src.getDeclaredAnnotations());
+    }
+
+    /**
+     * Helper method that gets methods declared in given class; usually a simple thing,
+     * but sometimes (as per [databind#785]) more complicated, depending on classloader
+     * setup.
+     *
+     * @since 2.5
+     */
+    protected static Method[] _findClassMethods(Class<?> cls) {
+        try {
+            return ClassUtil.getDeclaredMethods(cls);
+        } catch (final NoClassDefFoundError ex) {
+            final ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            if (loader == null) {
+                throw ex;
+            }
+            final Class<?> contextClass;
+            try {
+                contextClass = loader.loadClass(cls.getName());
+            } catch (ClassNotFoundException e) {
+                throw ex;
+            }
+            return contextClass.getDeclaredMethods();
+        }
+    }
+
+    /*
+    /**********************************************************
+    /* Other methods
+    /**********************************************************
+     */
+    @Override
+    public String toString() {
+        return "[AnnotedClass " + _class.getName() + "]";
+    }
+
+    @Override
+    public int hashCode() {
+        return _class.getName().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!ClassUtil.hasClass(o, getClass())) {
+            return false;
+        }
+        return ((AnnotatedClass) o)._class == _class;
+    }
+}
+
