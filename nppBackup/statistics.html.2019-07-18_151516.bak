@@ -5176,9 +5176,6 @@ div.tocify {
       color: #222;
   }
 </style>
-<ul>
-<li><a href="https://github.com/spgroup/conflict-patterns/tree/master/isi/results-log-raw.zip">RAW Results and Logs</a></li>
-</ul>
 <div id="how-often-conflicts-occur-with-semistructured-and-unstructured-merge" class="section level2">
 <h2>How often conflicts occur with semistructured and unstructured merge?</h2>
 <p>There is a difference of <strong>59.24%</strong> in the number of reported conflicts.</p>
