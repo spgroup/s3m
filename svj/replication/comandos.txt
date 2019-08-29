@@ -1,0 +1,4 @@
+java -jar -Xmx6g miner.jar -r
+java -jar -Xmx6g miner.jar -r -t
+java -jar -Xmx6g miner.jar
+java -jar -Xmx6g miner.jar -t
